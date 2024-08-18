@@ -53,6 +53,7 @@
             // 
             // menuPanel
             // 
+            menuPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             menuPanel.BackColor = SystemColors.Control;
             menuPanel.Controls.Add(newButton);
             menuPanel.Controls.Add(openButton);
@@ -79,6 +80,7 @@
             newButton.Text = "Novo [Ctrl+N]";
             newButton.TextAlign = ContentAlignment.BottomCenter;
             newButton.UseVisualStyleBackColor = true;
+            newButton.Click += newButton_Click;
             // 
             // openButton
             // 
@@ -91,6 +93,7 @@
             openButton.Text = "Abrir [Ctrl+O]";
             openButton.TextAlign = ContentAlignment.BottomCenter;
             openButton.UseVisualStyleBackColor = true;
+            openButton.Click += openButton_Click;
             // 
             // saveButton
             // 
@@ -103,6 +106,7 @@
             saveButton.Text = "Salvar [Ctrl+S]";
             saveButton.TextAlign = ContentAlignment.BottomCenter;
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // copyButton
             // 
@@ -115,6 +119,7 @@
             copyButton.Text = "Copiar [Ctrl+C]";
             copyButton.TextAlign = ContentAlignment.BottomCenter;
             copyButton.UseVisualStyleBackColor = true;
+            copyButton.Click += copyButton_Click;
             // 
             // pasteButton
             // 
@@ -127,6 +132,7 @@
             pasteButton.Text = "Colar [Ctrl+V]";
             pasteButton.TextAlign = ContentAlignment.BottomCenter;
             pasteButton.UseVisualStyleBackColor = true;
+            pasteButton.Click += pasteButton_Click;
             // 
             // cutButton
             // 
@@ -139,6 +145,7 @@
             cutButton.Text = "Recortar [Ctrl+X]";
             cutButton.TextAlign = ContentAlignment.BottomCenter;
             cutButton.UseVisualStyleBackColor = true;
+            cutButton.Click += cutButton_Click;
             // 
             // compileButton
             // 
@@ -151,6 +158,7 @@
             compileButton.Text = "Compilar [F7]";
             compileButton.TextAlign = ContentAlignment.BottomCenter;
             compileButton.UseVisualStyleBackColor = true;
+            compileButton.Click += compileButton_Click;
             // 
             // teamButton
             // 
@@ -163,9 +171,11 @@
             teamButton.Text = "Equipe [F1]";
             teamButton.TextAlign = ContentAlignment.BottomCenter;
             teamButton.UseVisualStyleBackColor = true;
+            teamButton.Click += teamButton_Click;
             // 
             // splitContainer
             // 
+            splitContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer.Location = new Point(2, 118);
             splitContainer.MinimumSize = new Size(900, 0);
             splitContainer.Name = "splitContainer";
@@ -188,17 +198,18 @@
             // 
             codeEditorTextBox.AcceptsReturn = true;
             codeEditorTextBox.AcceptsTab = true;
-            codeEditorTextBox.Dock = DockStyle.Fill;
+            codeEditorTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             codeEditorTextBox.Location = new Point(0, 0);
             codeEditorTextBox.Multiline = true;
             codeEditorTextBox.Name = "codeEditorTextBox";
-            codeEditorTextBox.ScrollBars = ScrollBars.Vertical;
+            codeEditorTextBox.ScrollBars = ScrollBars.Both;
             codeEditorTextBox.Size = new Size(900, 246);
             codeEditorTextBox.TabIndex = 0;
+            codeEditorTextBox.WordWrap = false;
             // 
             // messagesTextBox
             // 
-            messagesTextBox.Dock = DockStyle.Fill;
+            messagesTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             messagesTextBox.Location = new Point(0, 0);
             messagesTextBox.Multiline = true;
             messagesTextBox.Name = "messagesTextBox";
@@ -210,17 +221,17 @@
             // statusBarPanel
             // 
             statusBarPanel.Controls.Add(statusBarLabel);
-            statusBarPanel.Location = new Point(2, 565);
+            statusBarPanel.Dock = DockStyle.Bottom;
+            statusBarPanel.Location = new Point(0, 577);
             statusBarPanel.MinimumSize = new Size(900, 0);
             statusBarPanel.Name = "statusBarPanel";
-            statusBarPanel.Size = new Size(900, 23);
+            statusBarPanel.Size = new Size(910, 23);
             statusBarPanel.TabIndex = 3;
             // 
             // statusBarLabel
             // 
             statusBarLabel.AutoSize = true;
-            statusBarLabel.Dock = DockStyle.Fill;
-            statusBarLabel.Location = new Point(0, 0);
+            statusBarLabel.Location = new Point(3, 3);
             statusBarLabel.Name = "statusBarLabel";
             statusBarLabel.Size = new Size(63, 15);
             statusBarLabel.TabIndex = 0;
