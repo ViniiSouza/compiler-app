@@ -39,7 +39,7 @@
             compileButton = new Button();
             teamButton = new Button();
             splitContainer = new SplitContainer();
-            codeEditorTextBox = new TextBox();
+            codeEditorTextBox = new RichTextBox();
             messagesTextBox = new TextBox();
             statusBarPanel = new Panel();
             statusBarLabel = new Label();
@@ -196,15 +196,14 @@
             // 
             // codeEditorTextBox
             // 
-            codeEditorTextBox.AcceptsReturn = true;
             codeEditorTextBox.AcceptsTab = true;
             codeEditorTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             codeEditorTextBox.Location = new Point(0, 0);
-            codeEditorTextBox.Multiline = true;
             codeEditorTextBox.Name = "codeEditorTextBox";
-            codeEditorTextBox.ScrollBars = ScrollBars.Both;
+            codeEditorTextBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
             codeEditorTextBox.Size = new Size(900, 246);
             codeEditorTextBox.TabIndex = 0;
+            codeEditorTextBox.Text = "";
             codeEditorTextBox.WordWrap = false;
             // 
             // messagesTextBox
@@ -249,7 +248,6 @@
             Text = "Compilador";
             menuPanel.ResumeLayout(false);
             splitContainer.Panel1.ResumeLayout(false);
-            splitContainer.Panel1.PerformLayout();
             splitContainer.Panel2.ResumeLayout(false);
             splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
@@ -271,9 +269,9 @@
         private Button copyButton;
         private Button saveButton;
         private Button openButton;
-        private TextBox codeEditorTextBox;
         private TextBox messagesTextBox;
         private Panel statusBarPanel;
         private Label statusBarLabel;
+        private RichTextBox codeEditorTextBox;
     }
 }
