@@ -232,9 +232,8 @@
             statusBarLabel.AutoSize = true;
             statusBarLabel.Location = new Point(3, 3);
             statusBarLabel.Name = "statusBarLabel";
-            statusBarLabel.Size = new Size(63, 15);
+            statusBarLabel.Size = new Size(0, 15);
             statusBarLabel.TabIndex = 0;
-            statusBarLabel.Text = "Texto teste";
             // 
             // Compilador
             // 
@@ -246,6 +245,7 @@
             Controls.Add(menuPanel);
             Name = "Compilador";
             Text = "Compilador";
+            KeyDown += Compilador_KeyDown;
             menuPanel.ResumeLayout(false);
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel2.ResumeLayout(false);
