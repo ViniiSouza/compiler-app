@@ -151,18 +151,6 @@ namespace CompiladorApp
             {
                 saveButton_Click(sender, e);
             }
-            else if (e.Control && e.KeyCode == Keys.C)
-            {
-                copyButton_Click(sender, e);
-            }
-            else if (e.Control && e.KeyCode == Keys.V)
-            {
-                pasteButton_Click(sender, e);
-            }
-            else if (e.Control && e.KeyCode == Keys.X)
-            {
-                cutButton_Click(sender, e);
-            }
             else if (e.KeyCode == Keys.F7)
             {
                 compileButton_Click(sender, e);
@@ -171,6 +159,19 @@ namespace CompiladorApp
             {
                 teamButton_Click(sender, e);
             }
+            // os itens abaixo já funcionam de maneira nativa, validar se futuramente será preciso corrigir
+            //else if (e.Control && e.KeyCode == Keys.C)
+            //{
+            //    copyButton_Click(sender, e);
+            //}
+            //else if (e.Control && e.KeyCode == Keys.V)
+            //{
+            //    pasteButton_Click(sender, e);
+            //}
+            //else if (e.Control && e.KeyCode == Keys.X)
+            //{
+            //    cutButton_Click(sender, e);
+            //}
         }
     }
 }
