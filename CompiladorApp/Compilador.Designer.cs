@@ -219,12 +219,12 @@
             // 
             // statusBarPanel
             // 
+            statusBarPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             statusBarPanel.Controls.Add(statusBarLabel);
-            statusBarPanel.Dock = DockStyle.Bottom;
             statusBarPanel.Location = new Point(0, 577);
             statusBarPanel.MinimumSize = new Size(900, 0);
             statusBarPanel.Name = "statusBarPanel";
-            statusBarPanel.Size = new Size(910, 23);
+            statusBarPanel.Size = new Size(900, 25);
             statusBarPanel.TabIndex = 3;
             // 
             // statusBarLabel

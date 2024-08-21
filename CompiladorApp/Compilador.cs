@@ -27,6 +27,7 @@ namespace CompiladorApp
             codeEditorTextBox.Clear();
             messagesTextBox.Clear();
             statusBarLabel.Text = String.Empty;
+            _filePath = String.Empty;
         }
 
         private void openButton_Click(object sender, EventArgs e)
