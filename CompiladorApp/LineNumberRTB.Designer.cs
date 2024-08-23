@@ -51,6 +51,6 @@
 
         #endregion
 
-        private RichTextBox richTextBox;
+        public RichTextBox richTextBox;
     }
 }
