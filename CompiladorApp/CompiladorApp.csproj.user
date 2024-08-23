@@ -4,6 +4,9 @@
     <Compile Update="Compilador.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="LineNumberRTB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">

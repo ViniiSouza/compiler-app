@@ -39,10 +39,11 @@
             compileButton = new Button();
             teamButton = new Button();
             splitContainer = new SplitContainer();
-            codeEditorTextBox = new RichTextBox();
             messagesTextBox = new TextBox();
+            codeEditorTextBox = new RichTextBox();
             statusBarPanel = new Panel();
             statusBarLabel = new Label();
+            lineNumberrtb1 = new LineNumberRTB();
             menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -183,8 +184,7 @@
             // 
             // splitContainer.Panel1
             // 
-            splitContainer.Panel1.Controls.Add(codeEditorTextBox);
-            splitContainer.Panel1.RightToLeft = RightToLeft.No;
+            splitContainer.Panel1.Controls.Add(lineNumberrtb1);
             // 
             // splitContainer.Panel2
             // 
@@ -193,6 +193,17 @@
             splitContainer.Size = new Size(900, 441);
             splitContainer.SplitterDistance = 246;
             splitContainer.TabIndex = 2;
+            // 
+            // messagesTextBox
+            // 
+            messagesTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            messagesTextBox.Location = new Point(0, 0);
+            messagesTextBox.Multiline = true;
+            messagesTextBox.Name = "messagesTextBox";
+            messagesTextBox.ReadOnly = true;
+            messagesTextBox.ScrollBars = ScrollBars.Vertical;
+            messagesTextBox.Size = new Size(900, 191);
+            messagesTextBox.TabIndex = 1;
             // 
             // codeEditorTextBox
             // 
@@ -205,17 +216,6 @@
             codeEditorTextBox.TabIndex = 0;
             codeEditorTextBox.Text = "";
             codeEditorTextBox.WordWrap = false;
-            // 
-            // messagesTextBox
-            // 
-            messagesTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            messagesTextBox.Location = new Point(0, 0);
-            messagesTextBox.Multiline = true;
-            messagesTextBox.Name = "messagesTextBox";
-            messagesTextBox.ReadOnly = true;
-            messagesTextBox.ScrollBars = ScrollBars.Vertical;
-            messagesTextBox.Size = new Size(900, 191);
-            messagesTextBox.TabIndex = 1;
             // 
             // statusBarPanel
             // 
@@ -234,6 +234,15 @@
             statusBarLabel.Name = "statusBarLabel";
             statusBarLabel.Size = new Size(0, 15);
             statusBarLabel.TabIndex = 0;
+            // 
+            // lineNumberrtb1
+            // 
+            lineNumberrtb1.BackColor = SystemColors.Window;
+            lineNumberrtb1.BorderStyle = BorderStyle.Fixed3D;
+            lineNumberrtb1.Location = new Point(0, 0);
+            lineNumberrtb1.Name = "lineNumberrtb1";
+            lineNumberrtb1.Size = new Size(898, 244);
+            lineNumberrtb1.TabIndex = 0;
             // 
             // Compilador
             // 
@@ -273,5 +282,6 @@
         private Panel statusBarPanel;
         private Label statusBarLabel;
         private RichTextBox codeEditorTextBox;
+        private LineNumberRTB lineNumberrtb1;
     }
 }
