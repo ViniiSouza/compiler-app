@@ -40,9 +40,9 @@
             teamButton = new Button();
             splitContainer = new SplitContainer();
             lineNumberRtb = new LineNumberRTB();
-            messagesTextBox = new TextBox();
             statusBarPanel = new Panel();
             statusBarLabel = new Label();
+            messagesTextBox = new RichTextBox();
             menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -203,17 +203,6 @@
             lineNumberRtb.Size = new Size(898, 244);
             lineNumberRtb.TabIndex = 0;
             // 
-            // messagesTextBox
-            // 
-            messagesTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            messagesTextBox.Location = new Point(0, 0);
-            messagesTextBox.Multiline = true;
-            messagesTextBox.Name = "messagesTextBox";
-            messagesTextBox.ReadOnly = true;
-            messagesTextBox.ScrollBars = ScrollBars.Vertical;
-            messagesTextBox.Size = new Size(900, 191);
-            messagesTextBox.TabIndex = 1;
-            // 
             // statusBarPanel
             // 
             statusBarPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -232,6 +221,20 @@
             statusBarLabel.Size = new Size(0, 15);
             statusBarLabel.TabIndex = 0;
             // 
+            // messagesTextBox
+            // 
+            messagesTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            messagesTextBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+            messagesTextBox.Location = new Point(0, 0);
+            messagesTextBox.Name = "messagesTextBox";
+            messagesTextBox.Size = new Size(900, 191);
+            messagesTextBox.TabIndex = 1;
+            messagesTextBox.AcceptsTab = true;
+            messagesTextBox.ReadOnly = true;
+            messagesTextBox.Multiline = true;
+            messagesTextBox.Text = "";
+            messagesTextBox.WordWrap = false;
+            // 
             // Compilador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -246,7 +249,6 @@
             menuPanel.ResumeLayout(false);
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel2.ResumeLayout(false);
-            splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
             splitContainer.ResumeLayout(false);
             statusBarPanel.ResumeLayout(false);
@@ -266,9 +268,9 @@
         private Button copyButton;
         private Button saveButton;
         private Button openButton;
-        private TextBox messagesTextBox;
         private Panel statusBarPanel;
         private Label statusBarLabel;
         private LineNumberRTB lineNumberRtb;
+        private RichTextBox messagesTextBox;
     }
 }
