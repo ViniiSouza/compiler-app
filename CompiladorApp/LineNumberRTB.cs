@@ -63,12 +63,11 @@ namespace CompiladorApp
                 ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
             this.Size = new Size(10, 10);
-            base.BackColor = System.Drawing.ColorTranslator.FromHtml("#222E33");
+            base.BackColor = Color.LightGray;
             base.Dock = DockStyle.Left;
-            base.ForeColor = Color.LimeGreen; //System.Drawing.ColorTranslator.FromHtml("#ddd");
-            this.OffsetColor = System.Drawing.ColorTranslator.FromHtml("#222E33");
+            base.ForeColor = Color.Black;
             this.Style = LineNumberStyle.Boxed;
-
+            this.BoxedLineColor = Color.Black;
 
             _fontBrush = new SolidBrush(base.ForeColor);
 
