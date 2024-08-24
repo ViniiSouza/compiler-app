@@ -37,8 +37,11 @@
             richTextBox.Location = new Point(0, 0);
             richTextBox.Name = "richTextBox";
             richTextBox.Size = new Size(150, 150);
-            richTextBox.TabIndex = 0;
             richTextBox.Text = "";
+            richTextBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+            richTextBox.AcceptsTab = true;
+            richTextBox.TabIndex = 0;
+            richTextBox.WordWrap = false;
             // 
             // LineNumberRTB
             // 
