@@ -195,6 +195,7 @@
             // 
             // lineNumberRtb
             // 
+            lineNumberRtb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lineNumberRtb.BackColor = SystemColors.Window;
             lineNumberRtb.BorderStyle = BorderStyle.Fixed3D;
             lineNumberRtb.Location = new Point(0, 0);
