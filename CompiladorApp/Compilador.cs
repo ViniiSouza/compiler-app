@@ -24,7 +24,7 @@ namespace CompiladorApp
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            codeEditorTextBox.Clear();
+            lineNumberRtb.richTextBox.Clear();
             messagesTextBox.Clear();
             statusBarLabel.Text = String.Empty;
             _filePath = String.Empty;
@@ -45,7 +45,7 @@ namespace CompiladorApp
                 {
                     string fileContent = File.ReadAllText(openFileDialog.FileName);
 
-                    codeEditorTextBox.Text = fileContent;
+                    lineNumberRtb.richTextBox.Text = fileContent;
 
                     messagesTextBox.Clear();
 
@@ -75,7 +75,7 @@ namespace CompiladorApp
                 {
                     try
                     {
-                        File.WriteAllText(saveFileDialog.FileName, codeEditorTextBox.Text);
+                        File.WriteAllText(saveFileDialog.FileName, lineNumberRtb.richTextBox.Text);
 
                         _filePath = saveFileDialog.FileName;
 
@@ -93,7 +93,7 @@ namespace CompiladorApp
             {
                 try
                 {
-                    File.WriteAllText(_filePath, codeEditorTextBox.Text);
+                    File.WriteAllText(_filePath, lineNumberRtb.richTextBox.Text);
 
                     messagesTextBox.Clear();
                 }
@@ -106,9 +106,9 @@ namespace CompiladorApp
 
         private void copyButton_Click(object sender, EventArgs e)
         {
-            if (codeEditorTextBox.SelectionLength > 0)
+            if (lineNumberRtb.richTextBox.SelectionLength > 0)
             {
-                codeEditorTextBox.Copy();
+                lineNumberRtb.richTextBox.Copy();
             }
         }
 
@@ -116,15 +116,15 @@ namespace CompiladorApp
         {
             if (Clipboard.ContainsText())
             {
-                codeEditorTextBox.Paste();
+                lineNumberRtb.richTextBox.Paste();
             }
         }
 
         private void cutButton_Click(object sender, EventArgs e)
         {
-            if (codeEditorTextBox.SelectionLength > 0)
+            if (lineNumberRtb.richTextBox.SelectionLength > 0)
             {
-                codeEditorTextBox.Cut();
+                lineNumberRtb.richTextBox.Cut();
             }
         }
 

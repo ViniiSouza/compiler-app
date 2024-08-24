@@ -39,11 +39,10 @@
             compileButton = new Button();
             teamButton = new Button();
             splitContainer = new SplitContainer();
+            lineNumberRtb = new LineNumberRTB();
             messagesTextBox = new TextBox();
-            codeEditorTextBox = new RichTextBox();
             statusBarPanel = new Panel();
             statusBarLabel = new Label();
-            lineNumberrtb1 = new LineNumberRTB();
             menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -184,7 +183,7 @@
             // 
             // splitContainer.Panel1
             // 
-            splitContainer.Panel1.Controls.Add(lineNumberrtb1);
+            splitContainer.Panel1.Controls.Add(lineNumberRtb);
             // 
             // splitContainer.Panel2
             // 
@@ -193,6 +192,15 @@
             splitContainer.Size = new Size(900, 441);
             splitContainer.SplitterDistance = 246;
             splitContainer.TabIndex = 2;
+            // 
+            // lineNumberRtb
+            // 
+            lineNumberRtb.BackColor = SystemColors.Window;
+            lineNumberRtb.BorderStyle = BorderStyle.Fixed3D;
+            lineNumberRtb.Location = new Point(0, 0);
+            lineNumberRtb.Name = "lineNumberRtb";
+            lineNumberRtb.Size = new Size(898, 244);
+            lineNumberRtb.TabIndex = 0;
             // 
             // messagesTextBox
             // 
@@ -204,18 +212,6 @@
             messagesTextBox.ScrollBars = ScrollBars.Vertical;
             messagesTextBox.Size = new Size(900, 191);
             messagesTextBox.TabIndex = 1;
-            // 
-            // codeEditorTextBox
-            // 
-            codeEditorTextBox.AcceptsTab = true;
-            codeEditorTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            codeEditorTextBox.Location = new Point(0, 0);
-            codeEditorTextBox.Name = "codeEditorTextBox";
-            codeEditorTextBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-            codeEditorTextBox.Size = new Size(900, 246);
-            codeEditorTextBox.TabIndex = 0;
-            codeEditorTextBox.Text = "";
-            codeEditorTextBox.WordWrap = false;
             // 
             // statusBarPanel
             // 
@@ -234,15 +230,6 @@
             statusBarLabel.Name = "statusBarLabel";
             statusBarLabel.Size = new Size(0, 15);
             statusBarLabel.TabIndex = 0;
-            // 
-            // lineNumberrtb1
-            // 
-            lineNumberrtb1.BackColor = SystemColors.Window;
-            lineNumberrtb1.BorderStyle = BorderStyle.Fixed3D;
-            lineNumberrtb1.Location = new Point(0, 0);
-            lineNumberrtb1.Name = "lineNumberrtb1";
-            lineNumberrtb1.Size = new Size(898, 244);
-            lineNumberrtb1.TabIndex = 0;
             // 
             // Compilador
             // 
@@ -281,7 +268,6 @@
         private TextBox messagesTextBox;
         private Panel statusBarPanel;
         private Label statusBarLabel;
-        private RichTextBox codeEditorTextBox;
-        private LineNumberRTB lineNumberrtb1;
+        private LineNumberRTB lineNumberRtb;
     }
 }
