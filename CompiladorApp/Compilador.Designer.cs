@@ -221,7 +221,7 @@
             statusBarPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             statusBarPanel.Controls.Add(statusBarLabel);
             statusBarPanel.Location = new Point(0, 577);
-            statusBarPanel.MinimumSize = new Size(900, 0);
+            statusBarPanel.MinimumSize = new Size(900, 25);
             statusBarPanel.Name = "statusBarPanel";
             statusBarPanel.Size = new Size(900, 25);
             statusBarPanel.TabIndex = 3;
