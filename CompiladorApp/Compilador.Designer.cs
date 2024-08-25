@@ -40,9 +40,9 @@
             teamButton = new Button();
             splitContainer = new SplitContainer();
             lineNumberRtb = new LineNumberRTB();
+            messagesTextBox = new RichTextBox();
             statusBarPanel = new Panel();
             statusBarLabel = new Label();
-            messagesTextBox = new RichTextBox();
             menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -203,9 +203,22 @@
             lineNumberRtb.Size = new Size(898, 244);
             lineNumberRtb.TabIndex = 0;
             // 
+            // messagesTextBox
+            // 
+            messagesTextBox.AcceptsTab = true;
+            messagesTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            messagesTextBox.Location = new Point(0, 0);
+            messagesTextBox.Name = "messagesTextBox";
+            messagesTextBox.ReadOnly = true;
+            messagesTextBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+            messagesTextBox.Size = new Size(900, 191);
+            messagesTextBox.TabIndex = 1;
+            messagesTextBox.Text = "";
+            messagesTextBox.WordWrap = false;
+            // 
             // statusBarPanel
             // 
-            statusBarPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            statusBarPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             statusBarPanel.Controls.Add(statusBarLabel);
             statusBarPanel.Location = new Point(0, 577);
             statusBarPanel.MinimumSize = new Size(900, 0);
@@ -220,20 +233,6 @@
             statusBarLabel.Name = "statusBarLabel";
             statusBarLabel.Size = new Size(0, 15);
             statusBarLabel.TabIndex = 0;
-            // 
-            // messagesTextBox
-            // 
-            messagesTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            messagesTextBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-            messagesTextBox.Location = new Point(0, 0);
-            messagesTextBox.Name = "messagesTextBox";
-            messagesTextBox.Size = new Size(900, 191);
-            messagesTextBox.TabIndex = 1;
-            messagesTextBox.AcceptsTab = true;
-            messagesTextBox.ReadOnly = true;
-            messagesTextBox.Multiline = true;
-            messagesTextBox.Text = "";
-            messagesTextBox.WordWrap = false;
             // 
             // Compilador
             // 
