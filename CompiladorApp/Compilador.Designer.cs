@@ -39,8 +39,8 @@
             compileButton = new Button();
             teamButton = new Button();
             splitContainer = new SplitContainer();
-            codeEditorTextBox = new TextBox();
-            messagesTextBox = new TextBox();
+            lineNumberRtb = new LineNumberRTB();
+            messagesTextBox = new RichTextBox();
             statusBarPanel = new Panel();
             statusBarLabel = new Label();
             menuPanel.SuspendLayout();
@@ -53,6 +53,7 @@
             // 
             // menuPanel
             // 
+            menuPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             menuPanel.BackColor = SystemColors.Control;
             menuPanel.Controls.Add(newButton);
             menuPanel.Controls.Add(openButton);
@@ -79,6 +80,7 @@
             newButton.Text = "Novo [Ctrl+N]";
             newButton.TextAlign = ContentAlignment.BottomCenter;
             newButton.UseVisualStyleBackColor = true;
+            newButton.Click += newButton_Click;
             // 
             // openButton
             // 
@@ -91,6 +93,7 @@
             openButton.Text = "Abrir [Ctrl+O]";
             openButton.TextAlign = ContentAlignment.BottomCenter;
             openButton.UseVisualStyleBackColor = true;
+            openButton.Click += openButton_Click;
             // 
             // saveButton
             // 
@@ -103,6 +106,7 @@
             saveButton.Text = "Salvar [Ctrl+S]";
             saveButton.TextAlign = ContentAlignment.BottomCenter;
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // copyButton
             // 
@@ -115,6 +119,7 @@
             copyButton.Text = "Copiar [Ctrl+C]";
             copyButton.TextAlign = ContentAlignment.BottomCenter;
             copyButton.UseVisualStyleBackColor = true;
+            copyButton.Click += copyButton_Click;
             // 
             // pasteButton
             // 
@@ -127,6 +132,7 @@
             pasteButton.Text = "Colar [Ctrl+V]";
             pasteButton.TextAlign = ContentAlignment.BottomCenter;
             pasteButton.UseVisualStyleBackColor = true;
+            pasteButton.Click += pasteButton_Click;
             // 
             // cutButton
             // 
@@ -139,6 +145,7 @@
             cutButton.Text = "Recortar [Ctrl+X]";
             cutButton.TextAlign = ContentAlignment.BottomCenter;
             cutButton.UseVisualStyleBackColor = true;
+            cutButton.Click += cutButton_Click;
             // 
             // compileButton
             // 
@@ -151,6 +158,7 @@
             compileButton.Text = "Compilar [F7]";
             compileButton.TextAlign = ContentAlignment.BottomCenter;
             compileButton.UseVisualStyleBackColor = true;
+            compileButton.Click += compileButton_Click;
             // 
             // teamButton
             // 
@@ -163,9 +171,11 @@
             teamButton.Text = "Equipe [F1]";
             teamButton.TextAlign = ContentAlignment.BottomCenter;
             teamButton.UseVisualStyleBackColor = true;
+            teamButton.Click += teamButton_Click;
             // 
             // splitContainer
             // 
+            splitContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer.Location = new Point(2, 118);
             splitContainer.MinimumSize = new Size(900, 0);
             splitContainer.Name = "splitContainer";
@@ -173,8 +183,7 @@
             // 
             // splitContainer.Panel1
             // 
-            splitContainer.Panel1.Controls.Add(codeEditorTextBox);
-            splitContainer.Panel1.RightToLeft = RightToLeft.No;
+            splitContainer.Panel1.Controls.Add(lineNumberRtb);
             // 
             // splitContainer.Panel2
             // 
@@ -184,47 +193,46 @@
             splitContainer.SplitterDistance = 246;
             splitContainer.TabIndex = 2;
             // 
-            // codeEditorTextBox
+            // lineNumberRtb
             // 
-            codeEditorTextBox.AcceptsReturn = true;
-            codeEditorTextBox.AcceptsTab = true;
-            codeEditorTextBox.Dock = DockStyle.Fill;
-            codeEditorTextBox.Location = new Point(0, 0);
-            codeEditorTextBox.Multiline = true;
-            codeEditorTextBox.Name = "codeEditorTextBox";
-            codeEditorTextBox.ScrollBars = ScrollBars.Vertical;
-            codeEditorTextBox.Size = new Size(900, 246);
-            codeEditorTextBox.TabIndex = 0;
+            lineNumberRtb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lineNumberRtb.BackColor = SystemColors.Window;
+            lineNumberRtb.BorderStyle = BorderStyle.Fixed3D;
+            lineNumberRtb.Location = new Point(0, 0);
+            lineNumberRtb.Name = "lineNumberRtb";
+            lineNumberRtb.Size = new Size(898, 244);
+            lineNumberRtb.TabIndex = 0;
             // 
             // messagesTextBox
             // 
-            messagesTextBox.Dock = DockStyle.Fill;
+            messagesTextBox.AcceptsTab = true;
+            messagesTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             messagesTextBox.Location = new Point(0, 0);
-            messagesTextBox.Multiline = true;
             messagesTextBox.Name = "messagesTextBox";
             messagesTextBox.ReadOnly = true;
-            messagesTextBox.ScrollBars = ScrollBars.Vertical;
+            messagesTextBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
             messagesTextBox.Size = new Size(900, 191);
             messagesTextBox.TabIndex = 1;
+            messagesTextBox.Text = "";
+            messagesTextBox.WordWrap = false;
             // 
             // statusBarPanel
             // 
+            statusBarPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             statusBarPanel.Controls.Add(statusBarLabel);
-            statusBarPanel.Location = new Point(2, 565);
+            statusBarPanel.Location = new Point(0, 577);
             statusBarPanel.MinimumSize = new Size(900, 0);
             statusBarPanel.Name = "statusBarPanel";
-            statusBarPanel.Size = new Size(900, 23);
+            statusBarPanel.Size = new Size(900, 25);
             statusBarPanel.TabIndex = 3;
             // 
             // statusBarLabel
             // 
             statusBarLabel.AutoSize = true;
-            statusBarLabel.Dock = DockStyle.Fill;
-            statusBarLabel.Location = new Point(0, 0);
+            statusBarLabel.Location = new Point(3, 3);
             statusBarLabel.Name = "statusBarLabel";
-            statusBarLabel.Size = new Size(63, 15);
+            statusBarLabel.Size = new Size(0, 15);
             statusBarLabel.TabIndex = 0;
-            statusBarLabel.Text = "Texto teste";
             // 
             // Compilador
             // 
@@ -236,11 +244,10 @@
             Controls.Add(menuPanel);
             Name = "Compilador";
             Text = "Compilador";
+            KeyDown += Compilador_KeyDown;
             menuPanel.ResumeLayout(false);
             splitContainer.Panel1.ResumeLayout(false);
-            splitContainer.Panel1.PerformLayout();
             splitContainer.Panel2.ResumeLayout(false);
-            splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer).EndInit();
             splitContainer.ResumeLayout(false);
             statusBarPanel.ResumeLayout(false);
@@ -260,9 +267,9 @@
         private Button copyButton;
         private Button saveButton;
         private Button openButton;
-        private TextBox codeEditorTextBox;
-        private TextBox messagesTextBox;
         private Panel statusBarPanel;
         private Label statusBarLabel;
+        private LineNumberRTB lineNumberRtb;
+        private RichTextBox messagesTextBox;
     }
 }
