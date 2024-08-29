@@ -1,0 +1,61 @@
+#Options
+GenerateScanner = true
+GenerateParser = false
+Language = Java
+ScannerName = Lexico
+ScannerCaseSensitive = true
+ScannerTable = Compact
+Input = String
+#RegularDefinitions
+prefixo: (i|f|b|s)_
+#Tokens
+// lê e ignora caracteres de formatação
+:[\s\t\n]
+
+// símbolos especiais
+"&&"
+"||"
+"!"
+"=="
+"!="
+"<"
+">"
+"+"
+"-"
+"*"
+"/"
+","
+";"
+"="
+"("
+")"
+
+palavra: [a-z] [a-zA-Z]*
+
+// palavras reservadas
+
+main = palavra: "main"
+end = palavra: "end"
+if = palavra: "if"
+elif = palavra: "elif"
+else = palavra: "else"
+false = palavra: "false"
+true = palavra: "true"
+read = palavra: "read"
+write = palavra: "write"
+writeln = palavra: "writeln"
+repeat = palavra: "repeat"
+until = palavra: "until"
+while = palavra: "while"
+
+
+identificador:! {prefixo}([a-z][A-Z]?|[A-Z])([a-z0-9][A-Z]?)*
+
+int: [0-9]|[1-9][0-9]*
+
+float: ([0-9]|[1-9][0-9]*),([0-9]|[0-9]*[1-9])
+
+string: \"([^%\n\"]|%x)*\"
+
+// comentário de bloco
+:! >@\n[^@]*\n@<
