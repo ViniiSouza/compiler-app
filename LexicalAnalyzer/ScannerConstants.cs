@@ -1,6 +1,6 @@
 ﻿namespace LexicalAnalyzer
 {
-    internal class ScannerConstants
+    public class ScannerConstants
     {
         public int[] SCANNER_TABLE_INDEXES =
     {
@@ -1084,12 +1084,12 @@
         "símbolo inválido",
         "",
         "",
-        "Erro identificando string",
+        "constante_string inválida",
         "",
         "Erro identificando float",
         "",
         "Erro identificando <ignorar>",
-        "Erro identificando identificador",
+        "identificador inválido",
         "",
         "",
         "Erro identificando <ignorar>",
