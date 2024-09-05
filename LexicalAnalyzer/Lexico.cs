@@ -63,7 +63,7 @@ namespace LexicalAnalyzer
             if (token == 0)
                 return NextToken();
 
-            string lexeme = input.Substring(start, end);
+            string lexeme = input.Substring(start, end - start);
             token = LookupToken(token, lexeme);
 
             return new Token(token, lexeme, start);
