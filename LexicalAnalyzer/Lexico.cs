@@ -66,6 +66,9 @@ namespace LexicalAnalyzer
             string lexeme = input.Substring(start, end - start);
             token = LookupToken(token, lexeme);
 
+            if (token == 18)
+                throw new LexicalError($"{lexeme} palavra reservada inválida", start);
+
             return new Token(token, lexeme, start);
         }
 
