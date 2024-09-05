@@ -5,7 +5,7 @@
         private int position;
         public AnalysisError(string msg, int position) : base(msg)
         {
-            this.position = -1;
+            this.position = position;
         }
 
         public AnalysisError(string msg) : base(msg)
@@ -13,7 +13,7 @@
             this.position = -1;
         }
 
-        public int getPosition()
+        public int GetPosition()
         {
             return position;
         }

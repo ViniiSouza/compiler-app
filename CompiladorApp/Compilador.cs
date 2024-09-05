@@ -150,7 +150,7 @@ namespace CompiladorApp
             catch (LexicalError errorLexical) 
             {
                 error = true;
-                messagesTextBox.Text = $"Implementar linha: {errorLexical.Message}";
+                messagesTextBox.Text = $"Implementar linha {errorLexical.GetPosition()}: {errorLexical.Message} ";
             }
 
             if (!error)
@@ -206,7 +206,7 @@ namespace CompiladorApp
         {
             if (tokenId >= 2 && tokenId <= 17)
                 return "símbolo especial";
-            else if (tokenId >= 18 && tokenId <= 31)
+            else if (tokenId >= 19 && tokenId <= 31)
                 return "palavra reservada";
             else
                 switch (tokenId) 
