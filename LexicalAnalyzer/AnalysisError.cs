@@ -1,6 +1,6 @@
 ﻿namespace LexicalAnalyzer
 {
-    internal class AnalysisError : Exception
+    public class AnalysisError : Exception
     {
         private int position;
         public AnalysisError(string msg, int position) : base(msg)

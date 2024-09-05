@@ -1,3 +1,5 @@
+using LexicalAnalyzer;
+
 namespace CompiladorApp
 {
     public partial class Compilador : Form
@@ -130,7 +132,32 @@ namespace CompiladorApp
 
         private void compileButton_Click(object sender, EventArgs e)
         {
-            messagesTextBox.Text = "Compilação de programas ainda não foi implementada";
+            string sourceCode = lineNumberRtb.richTextBox.Text;
+            Lexico scanner = new();
+            scanner.SetInput(sourceCode);
+
+            List<string> tokenList = new List<string>();
+            bool error = false;
+
+            try
+            {
+                Token t = null;
+                while ((t = scanner.NextToken()) != null)
+                {
+                    tokenList.Add($"Implementar linha {t.GetPosition()}: classe={GetTokenClassName(t.GetId())}, lexema={t.GetLexeme()}");
+                }
+            }
+            catch (LexicalError errorLexical) 
+            {
+                error = true;
+                messagesTextBox.Text = $"Implementar linha: {errorLexical.Message}";
+            }
+
+            if (!error)
+            {
+                messagesTextBox.Text = string.Join(Environment.NewLine, tokenList);
+                messagesTextBox.AppendText(Environment.NewLine + "Programa compilado com sucesso.");
+            }
         }
 
         private void teamButton_Click(object sender, EventArgs e)
@@ -173,6 +200,28 @@ namespace CompiladorApp
             //{
             //    cutButton_Click(sender, e);
             //}
+        }
+
+        private string GetTokenClassName(int tokenId)
+        {
+            if (tokenId >= 2 && tokenId <= 17)
+                return "símbolo especial";
+            else if (tokenId >= 18 && tokenId <= 31)
+                return "palavra reservada";
+            else
+                switch (tokenId) 
+                {
+                    case 32:
+                        return "identificador";
+                    case 33:
+                        return "constante_int";
+                    case 34:
+                        return "constante_float";
+                    case 35:
+                        return "constante_string";
+                    default:
+                        return "classe não esperada";
+                }
         }
     }
 }

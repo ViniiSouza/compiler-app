@@ -1,7 +1,7 @@
 ﻿
 namespace LexicalAnalyzer
 {
-    internal class Lexico : Constants
+    public class Lexico : Constants
     {
         private int position;
         private string input;

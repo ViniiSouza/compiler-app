@@ -1,6 +1,6 @@
 ﻿namespace LexicalAnalyzer
 {
-    internal class Constants : ScannerConstants
+    public class Constants : ScannerConstants
     {
         public int EPSILON = 0;
         public int DOLLAR = 1;
