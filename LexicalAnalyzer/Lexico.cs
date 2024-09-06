@@ -1,7 +1,7 @@
 ﻿
 namespace LexicalAnalyzer
 {
-    internal class Lexico : Constants
+    public class Lexico : Constants
     {
         private int position;
         private string input;
@@ -54,7 +54,7 @@ namespace LexicalAnalyzer
             }
 
             if (endState < 0 || (endState != state && TokenForState(lastState) == -2))
-                throw new LexicalError(SCANNER_ERROR[lastState], start);
+                throw new LexicalError(SCANNER_ERROR[lastState], start, input.Substring(start, position - start));
 
             position = end;
 
@@ -63,8 +63,11 @@ namespace LexicalAnalyzer
             if (token == 0)
                 return NextToken();
 
-            string lexeme = input.Substring(start, end);
+            string lexeme = input.Substring(start, end - start);
             token = LookupToken(token, lexeme);
+
+            if (token == 18)
+                throw new LexicalError($"{lexeme} palavra reservada inválida", start);
 
             return new Token(token, lexeme, start);
         }

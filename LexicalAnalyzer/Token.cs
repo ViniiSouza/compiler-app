@@ -1,6 +1,6 @@
 ﻿namespace LexicalAnalyzer
 {
-    internal class Token
+    public class Token
     {
         private int id;
         private string lexeme;
