@@ -147,7 +147,7 @@ namespace CompiladorApp
                 while ((t = scanner.NextToken()) != null)
                 {
                     int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(t.GetPosition()));
-                    tokenList.Add($"linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1} - {GetTokenClassName(t.GetId())} - \b{t.GetLexeme()}\b");
+                    tokenList.Add($"linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1} - {GetTokenClassName(t.GetId())} - {t.GetLexeme()}");
                 }
             }
             catch (LexicalError errorLexical) 
