@@ -1,4 +1,5 @@
 using LexicalAnalyzer;
+using System;
 using System.Windows.Forms;
 
 namespace CompiladorApp
@@ -146,14 +147,14 @@ namespace CompiladorApp
                 while ((t = scanner.NextToken()) != null)
                 {
                     int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(t.GetPosition()));
-                    tokenList.Add($"linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1} - {GetTokenClassName(t.GetId())} - {t.GetLexeme()}");
+                    tokenList.Add($"linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1} - {GetTokenClassName(t.GetId())} - \b{t.GetLexeme()}\b");
                 }
             }
             catch (LexicalError errorLexical) 
             {
                 error = true;
                 int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(errorLexical.GetPosition()));
-                messagesTextBox.Text = $"linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1}: {errorLexical.GetLexeme()} {errorLexical.Message} ";
+                messagesTextBox.Rtf = string.Format(@"{{\rtf1\ansi linha {0}: \b {1}\b0  {2} }}", lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1, errorLexical.GetLexeme(), errorLexical.Message);
             }
 
             if (!error)
