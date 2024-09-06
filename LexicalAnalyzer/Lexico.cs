@@ -54,7 +54,7 @@ namespace LexicalAnalyzer
             }
 
             if (endState < 0 || (endState != state && TokenForState(lastState) == -2))
-                throw new LexicalError(SCANNER_ERROR[lastState], start);
+                throw new LexicalError(SCANNER_ERROR[lastState], start, input.Substring(start, position - start));
 
             position = end;
 

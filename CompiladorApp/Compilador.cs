@@ -146,19 +146,21 @@ namespace CompiladorApp
                 while ((t = scanner.NextToken()) != null)
                 {
                     int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(t.GetPosition()));
-                    tokenList.Add($"Implementar linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1}: classe={GetTokenClassName(t.GetId())}, lexema={t.GetLexeme()}");
+                    tokenList.Add($"linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1} - {GetTokenClassName(t.GetId())} - {t.GetLexeme()}");
                 }
             }
             catch (LexicalError errorLexical) 
             {
                 error = true;
                 int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(errorLexical.GetPosition()));
-                messagesTextBox.Text = $"Implementar linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1}: {errorLexical.Message} ";
+                messagesTextBox.Text = $"linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1}: {errorLexical.GetLexeme()} {errorLexical.Message} ";
             }
 
             if (!error)
             {
-                messagesTextBox.Text = string.Join(Environment.NewLine, tokenList);
+                if (tokenList.Any())
+                    messagesTextBox.Text = string.Join(Environment.NewLine, tokenList);
+
                 messagesTextBox.AppendText(Environment.NewLine + "Programa compilado com sucesso.");
             }
         }
