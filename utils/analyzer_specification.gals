@@ -13,7 +13,7 @@ Parser = SLR
 prefixo: (i|f|b|s)_
 #Tokens
 	// equipe: Cristian Monster
-		// Lucas de Farias
+		// Lucas de Farias Teixeira
 		// Vinícius Gabriel de Souza
 
 
