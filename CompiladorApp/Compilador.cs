@@ -159,6 +159,7 @@ namespace CompiladorApp
 
             if (!error)
             {
+                messagesTextBox.Clear();
                 if (tokenList.Any())
                     messagesTextBox.Text = string.Join(Environment.NewLine, tokenList);
 
