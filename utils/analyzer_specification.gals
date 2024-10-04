@@ -12,15 +12,15 @@ Parser = LL
 #RegularDefinitions
 prefixo: (i|f|b|s)_
 #Tokens
-	// equipe: Cristian Monster
+// equipe: Cristian Monster
 		// Lucas de Farias Teixeira
-		// VinÃ­cius Gabriel de Souza
+		// Vinícius Gabriel de Souza
 
 
-// lÃª e ignora caracteres de formataÃ§Ã£o
+// lê e ignora caracteres de formatação
 :[\s\t\n]
 
-// sÃ­mbolos especiais
+// símbolos especiais
 "&&"
 "||"
 "!"
@@ -65,7 +65,7 @@ float: ([0-9]|[1-9][0-9]*),([0-9]|[0-9]*[1-9])
 
 string: \"([^%\n\"]|%x)*\"
 
-// comentÃ¡rio de bloco
+// comentário de bloco
 :! >@\n[^@]*\n@<
 #NonTerminals
 <main>
@@ -111,47 +111,47 @@ string: \"([^%\n\"]|%x)*\"
 <main> ::= main <lista_instrucoes> end ;
 
 <lista_instrucoes> ::= <instrucao> <opc_lista_instrucoes>;
-<opc_lista_instrucoes> ::= <lista_instrucoes> | Ã®;
+<opc_lista_instrucoes> ::= <lista_instrucoes> | î;
 
 <instrucao> ::= <opc_instrucao> ";";
 <opc_instrucao> ::= <lista_id>  <opc_atribuicao> | <entrada> | <saida> | <selecao> | <repeticao> ; 
-<opc_atribuicao> ::= "=" <expressao> | Ã®;
+<opc_atribuicao> ::= "=" <expressao> | î;
 
 <lista_id> ::= identificador <opc_lista_id>;
-<opc_lista_id> ::=  "," <lista_id> | Ã® ;
+<opc_lista_id> ::=  "," <lista_id> | î ;
 
 <lista_comando> ::= <comando> ";" <opc_lista_comando>;
-<opc_lista_comando> ::= <lista_comando> | Ã® ;
+<opc_lista_comando> ::= <lista_comando> | î ;
 <comando> ::=  <atribuicao> | <entrada> | <saida> | <selecao> | <repeticao> ; 
 
 <atribuicao> ::= <lista_id> "=" <expressao> ;
 
 <entrada> ::= read "(" <lista_entrada> ")" ;
 <lista_entrada> ::=  <opcional_string> identificador <opc_lista_entrada>;
-<opc_lista_entrada> ::=  "," <lista_entrada> | Ã®  ;
-<opcional_string> ::= string "," | Ã® ;
+<opc_lista_entrada> ::=  "," <lista_entrada> | î  ;
+<opcional_string> ::= string "," | î ;
 
 <saida> ::= write "(" <lista_exp> ")" | writeln "(" <lista_exp> ")" ;
 <lista_exp> ::= <expressao> <opc_lista_exp>;
-<opc_lista_exp> ::= "," <lista_exp> | Ã® ;
+<opc_lista_exp> ::= "," <lista_exp> | î ;
 
 <selecao> ::= if <expressao> <lista_comando> <opcional_elif> <opcional_else> end ;
-<opcional_elif> ::= <elif> <opcional_elif> | Ã® ;
+<opcional_elif> ::= <elif> <opcional_elif> | î ;
 <elif> ::= elif <expressao> <lista_comando> ;
-<opcional_else> ::= else <lista_comando> | Ã® ;
+<opcional_else> ::= else <lista_comando> | î ;
 
 <repeticao> ::= repeat <lista_comando> <repeat_comando> <expressao> ;
 <repeat_comando> ::= while | until ;
 
 <expressao> ::= <elemento> <expressao1> ; 
-<expressao1> ::= Ã® | "&&" <elemento> <expressao1> | "||" <elemento> <expressao1> ; 
+<expressao1> ::= î | "&&" <elemento> <expressao1> | "||" <elemento> <expressao1> ; 
 <elemento> ::= <relacional> | true | false | "!" <elemento> ;
 <relacional> ::= <aritmetica> <relacional1> ;
-<relacional1> ::= Ã® | <operador_relacional> <aritmetica> ;
+<relacional1> ::= î | <operador_relacional> <aritmetica> ;
 <operador_relacional>::= "==" | "!=" | "<" | ">" ;
 <aritmetica> ::= <termo> <aritmetica1> ;
-<aritmetica1> ::= Ã® | "+" <termo> <aritmetica1> | "-" <termo> <aritmetica1> ;
+<aritmetica1> ::= î | "+" <termo> <aritmetica1> | "-" <termo> <aritmetica1> ;
 <termo> ::= <fator> <termo1> ;
-<termo1> ::= Ã® | "*" <fator> <termo1> | "/" <fator> <termo1> ;
+<termo1> ::= î | "*" <fator> <termo1> | "/" <fator> <termo1> ;
 <fator> ::= identificador | int | float | string | "(" <expressao> ")" | "+" <fator> | "-" <fator> ; 
 
