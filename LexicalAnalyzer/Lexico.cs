@@ -1,4 +1,5 @@
-﻿
+﻿using AnalyzerUtils;
+
 namespace LexicalAnalyzer
 {
     public class Lexico : Constants

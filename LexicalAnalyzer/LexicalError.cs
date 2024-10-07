@@ -1,4 +1,6 @@
-﻿namespace LexicalAnalyzer
+﻿using AnalyzerUtils;
+
+namespace LexicalAnalyzer
 {
     public class LexicalError : AnalysisError
     {

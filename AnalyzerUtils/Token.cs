@@ -1,4 +1,4 @@
-﻿namespace LexicalAnalyzer
+﻿namespace AnalyzerUtils
 {
     public class Token
     {

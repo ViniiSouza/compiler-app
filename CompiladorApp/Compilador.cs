@@ -136,6 +136,7 @@ namespace CompiladorApp
         {
             string sourceCode = lineNumberRtb.richTextBox.Text;
             Lexico scanner = new();
+            
             scanner.SetInput(sourceCode);
 
             List<string> tokenList = new List<string>();
