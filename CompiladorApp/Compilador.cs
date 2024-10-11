@@ -1,4 +1,7 @@
 using LexicalAnalyzer;
+using SyntaticAnalyzer;
+using SemanticAnalyzer;
+using AnalyzerUtils;
 using System;
 using System.Windows.Forms;
 
@@ -136,6 +139,8 @@ namespace CompiladorApp
         {
             string sourceCode = lineNumberRtb.richTextBox.Text;
             Lexico scanner = new();
+            Sintatico sintatico = new();
+            Semantico semantico = new();
             
             scanner.SetInput(sourceCode);
 
@@ -144,18 +149,25 @@ namespace CompiladorApp
 
             try
             {
-                Token t = null;
-                while ((t = scanner.NextToken()) != null)
-                {
-                    int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(t.GetPosition()));
-                    tokenList.Add($"linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1} - {GetTokenClassName(t.GetId())} - {t.GetLexeme()}");
-                }
+                sintatico.Parse(scanner, semantico);
+                //Token t = null;
+                //while ((t = scanner.NextToken()) != null)
+                //{
+                //    int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(t.GetPosition()));
+                //    tokenList.Add($"linha {lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1} - {GetTokenClassName(t.GetId())} - {t.GetLexeme()}");
+                //}
             }
             catch (LexicalError errorLexical) 
             {
                 error = true;
                 int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(errorLexical.GetPosition()));
-                messagesTextBox.Rtf = string.Format(@"{{\rtf1\ansi linha {0}: \b {1}\b0  {2} }}", lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1, errorLexical.GetLexeme(), errorLexical.Message);
+                messagesTextBox.Rtf = string.Format(@"{{\rtf1\ansi Erro na linha \b {0}\b0  -{1} {2} }}", lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1, errorLexical.GetLexeme(), errorLexical.Message);
+            }
+            catch (SyntaticError errorSyntatic)
+            {
+                error = true;
+                int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(errorSyntatic.GetPosition()));
+                messagesTextBox.Rtf = string.Format(@"{{\rtf1\ansi Erro na linha \b {0}\b0  - encontrado {1} {2} }}", lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1, errorSyntatic.GetFound(), errorSyntatic.Message);
             }
 
             if (!error)

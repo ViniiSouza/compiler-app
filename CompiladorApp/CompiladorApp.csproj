@@ -9,7 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AnalyzerUtils\AnalyzerUtils.csproj" />
     <ProjectReference Include="..\LexicalAnalyzer\LexicalAnalyzer.csproj" />
+    <ProjectReference Include="..\SemanticAnalyzer\SemanticAnalyzer.csproj" />
+    <ProjectReference Include="..\SyntaticAnalyzer\SyntaticAnalyzer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

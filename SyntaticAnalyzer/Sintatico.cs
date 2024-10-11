@@ -39,7 +39,7 @@ namespace SyntaticAnalyzer
                 currentToken = new Token(DOLLAR, "$", pos);
             }
 
-            int x = (int) stack.Pop();
+            int x = (int) stack.Pop();  
             int a = currentToken.GetId();
 
             if (x == EPSILON)
@@ -61,7 +61,7 @@ namespace SyntaticAnalyzer
                 }
                 else
                 {
-                    throw new SyntaticError(parserConstants.PARSER_ERROR[x], currentToken.GetPosition());
+                    throw new SyntaticError(parserConstants.PARSER_ERROR[x], currentToken.GetPosition(), currentToken.GetLexeme());
                 }
             }
             else if (IsNonTerminal(x))
@@ -69,7 +69,7 @@ namespace SyntaticAnalyzer
                 if (PushProduction(x, a))
                     return false;
                 else
-                    throw new SyntaticError(parserConstants.PARSER_ERROR[x], currentToken.GetPosition());
+                    throw new SyntaticError(parserConstants.PARSER_ERROR[x], currentToken.GetPosition(), currentToken.GetLexeme());
             }
             else // isSemanticAction(x)
             {

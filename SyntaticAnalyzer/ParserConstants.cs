@@ -128,77 +128,77 @@
         public readonly String[] PARSER_ERROR =
         {
         "",
-        "Era esperado fim de programa",
-        "Era esperado \"&&\"",
-        "Era esperado \"||\"",
-        "Era esperado \"!\"",
-        "Era esperado \"==\"",
-        "Era esperado \"!=\"",
-        "Era esperado \"<\"",
-        "Era esperado \">\"",
-        "Era esperado \"+\"",
-        "Era esperado \"-\"",
-        "Era esperado \"*\"",
-        "Era esperado \"/\"",
-        "Era esperado \",\"",
-        "Era esperado \";\"",
-        "Era esperado \"=\"",
-        "Era esperado \"(\"",
-        "Era esperado \")\"",
-        "Era esperado palavra",
-        "Era esperado main",
-        "Era esperado end",
-        "Era esperado if",
-        "Era esperado elif",
-        "Era esperado else",
-        "Era esperado false",
-        "Era esperado true",
-        "Era esperado read",
-        "Era esperado write",
-        "Era esperado writeln",
-        "Era esperado repeat",
-        "Era esperado until",
-        "Era esperado while",
-        "Era esperado identificador",
-        "Era esperado int",
-        "Era esperado float",
-        "Era esperado string",
-        "<main> inválido",
-        "<lista_instrucoes> inválido",
-        "<opc_lista_instrucoes> inválido",
-        "<instrucao> inválido",
-        "<lista_comando> inválido",
-        "<comando> inválido",
-        "<lista_id> inválido",
-        "<atribuicao> inválido",
-        "<entrada> inválido",
-        "<saida> inválido",
-        "<selecao> inválido",
-        "<repeticao> inválido",
-        "<lista_entrada> inválido",
-        "<opcional_string> inválido",
-        "<lista_exp> inválido",
-        "<expressao> inválido",
-        "<opcional_elif> inválido",
-        "<elif> inválido",
-        "<opcional_else> inválido",
-        "<repeat_comando> inválido",
-        "<fator> inválido",
-        "<termo1> inválido",
-        "<termo> inválido",
-        "<aritmetica1> inválido",
-        "<aritmetica> inválido",
-        "<operador_relacional> inválido",
-        "<relacional1> inválido",
-        "<relacional> inválido",
-        "<elemento> inválido",
-        "<expressao1> inválido",
-        "<opc_instrucao> inválido",
-        "<opc_atribuicao> inválido",
-        "<opc_lista_id> inválido",
-        "<opc_lista_comando> inválido",
-        "<opc_lista_entrada> inválido",
-        "<opc_lista_exp> inválido"
+        "esperado EOF",
+        "esperado &&",
+        "esperado ||",
+        "esperado !",
+        "esperado ==",
+        "esperado !=",
+        "esperado <",
+        "esperado >",
+        "esperado +",
+        "esperado -",
+        "esperado *",
+        "esperado /",
+        "esperado ,",
+        "esperado ;",
+        "esperado =",
+        "esperado (",
+        "esperado )",
+        "esperado palavra",
+        "esperado end",
+        "esperado if",
+        "esperado elif",
+        "esperado else",
+        "esperado false",
+        "esperado true",
+        "esperado read",
+        "esperado main",
+        "esperado write",
+        "esperado writeln",
+        "esperado repeat",
+        "esperado until",
+        "esperado while",
+        "esperado identificador",
+        "esperado int",
+        "esperado float",
+        "esperado string",
+        "esperado main", //"<main> inválido"
+        "esperado identificador read write writeln if repeat", //"<lista_instrucoes> inválido"
+        "esperado end if read write writeln repeat identificado", //"<opc_lista_instrucoes> inválido"
+        "esperado if read wrtie writeln repeat identificador", //"<instrucao> inválido"
+        "esperado if read write writeln repeat identificador", //"<lista_comando> inválido"
+        "esperado if read write writeln repeat identificador", //"<comando> inválido"
+        "esperado identificador", //"<lista_id> inválido"
+        "esperado identificador", //"<atribuicao> inválido"
+        "esperado read", //"<entrada> inválido"
+        "esperado write writeln", //"<saida> inválido"
+        "esperado if", //"<selecao> inválido"
+        "esperado repeat", //"<repeticao> inválido"
+        "esperado identificador string", //"<lista_entrada> inválido"
+        "esperado identificador string", //"<opcional_string> inválido"
+        "esperado expressao", //"<lista_exp> inválido"
+        "esperado expressao", //"<expressao> inválido"
+        "esperado end elif else", //"<opcional_elif> inválido"
+        "esperado elif", //"<elif> inválido"
+        "esperado end else", //"<opcional_else> inválido"
+        "esperado until while", //"<repeat_comando> inválido"
+        "esperado expressao", //"<fator> inválido"
+        "esperado expressao", //"<termo1> inválido"
+        "esperado expressao", //"<termo> inválido"
+        "esperado expressao", //"<aritmetica1> inválido"
+        "esperado expressao", //"<aritmetica> inválido"
+        "esperado == != < >", //"<operador_relacional> inválido"
+        "esperado expressao", //"<relacional1> inválido"
+        "esperado expressao", //"<relacional> inválido"
+        "esperado expressao", //"<elemento> inválido"
+        "esperado expressao", //"<expressao1> inválido"
+        "esperado if read write writeln repeat identificador", //"<opc_instrucao> inválido"
+        "esperado ; = ", //"<opc_atribuicao> inválido"
+        "esperado , ; =", //"<opc_lista_id> inválido"
+        "esperado end if elif else read write writeln repeat until while identificador", //"<opc_lista_comando> inválido"
+        "esperado , )", //"<opc_lista_entrada> inválido"
+        "esperado , )", //"<opc_lista_exp> inválido"
     };
     }
 }
