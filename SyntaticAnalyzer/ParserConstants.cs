@@ -165,7 +165,7 @@
         "esperado string",
         "esperado main", //"<main> inválido"
         "esperado identificador read write writeln if repeat", //"<lista_instrucoes> inválido"
-        "esperado end if read write writeln repeat identificado", //"<opc_lista_instrucoes> inválido"
+        "esperado end if read write writeln repeat identificador", //"<opc_lista_instrucoes> inválido"
         "esperado if read wrtie writeln repeat identificador", //"<instrucao> inválido"
         "esperado if read write writeln repeat identificador", //"<lista_comando> inválido"
         "esperado if read write writeln repeat identificador", //"<comando> inválido"

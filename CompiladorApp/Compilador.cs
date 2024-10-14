@@ -176,7 +176,7 @@ namespace CompiladorApp
                 if (tokenList.Any())
                     messagesTextBox.Text = string.Join(Environment.NewLine, tokenList);
 
-                messagesTextBox.AppendText(Environment.NewLine + "Programa compilado com sucesso.");
+                messagesTextBox.AppendText("Programa compilado com sucesso.");
             }
         }
 
