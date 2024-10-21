@@ -1,4 +1,6 @@
-﻿namespace LexicalAnalyzer
+﻿using AnalyzerUtils;
+
+namespace LexicalAnalyzer
 {
     public class LexicalError : AnalysisError
     {
@@ -15,7 +17,12 @@
 
         public LexicalError(string msg, int position, string lexeme) : base(msg, position)
         {
-            this.lexeme = lexeme;
+            if (msg == "constante_string inválida")
+            {
+                this.lexeme = "";
+                return;
+            }
+            this.lexeme = " " + lexeme;
         }
 
         public string GetLexeme()

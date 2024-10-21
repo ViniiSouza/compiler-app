@@ -5,7 +5,13 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompiladorApp", "CompiladorApp\CompiladorApp.csproj", "{2673FEE5-C9AB-44E1-9836-CCAE8725691F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexicalAnalyzer", "LexicalAnalyzer\LexicalAnalyzer.csproj", "{631375AA-12DB-4D5F-94E8-B8358B37AA5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LexicalAnalyzer", "LexicalAnalyzer\LexicalAnalyzer.csproj", "{631375AA-12DB-4D5F-94E8-B8358B37AA5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyntaticAnalyzer", "SyntaticAnalyzer\SyntaticAnalyzer.csproj", "{DCB75F31-E8CE-4480-A651-550DCD95EB6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticAnalyzer", "SemanticAnalyzer\SemanticAnalyzer.csproj", "{A082850E-AA9A-44E8-9542-A59F844C78AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyzerUtils", "AnalyzerUtils\AnalyzerUtils.csproj", "{E44A67E4-5514-4CFF-BA06-719AFB388E9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{631375AA-12DB-4D5F-94E8-B8358B37AA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{631375AA-12DB-4D5F-94E8-B8358B37AA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{631375AA-12DB-4D5F-94E8-B8358B37AA5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB75F31-E8CE-4480-A651-550DCD95EB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB75F31-E8CE-4480-A651-550DCD95EB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB75F31-E8CE-4480-A651-550DCD95EB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB75F31-E8CE-4480-A651-550DCD95EB6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A082850E-AA9A-44E8-9542-A59F844C78AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A082850E-AA9A-44E8-9542-A59F844C78AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A082850E-AA9A-44E8-9542-A59F844C78AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A082850E-AA9A-44E8-9542-A59F844C78AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E44A67E4-5514-4CFF-BA06-719AFB388E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E44A67E4-5514-4CFF-BA06-719AFB388E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E44A67E4-5514-4CFF-BA06-719AFB388E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E44A67E4-5514-4CFF-BA06-719AFB388E9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

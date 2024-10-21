@@ -1,8 +1,6 @@
-﻿namespace LexicalAnalyzer
+public interface ScannerConstants
 {
-    public class ScannerConstants
-    {
-        public int[] SCANNER_TABLE_INDEXES =
+    int[] SCANNER_TABLE_INDEXES = 
     {
         0,
         54,
@@ -46,8 +44,8 @@
         998
     };
 
-        public int[,] SCANNER_TABLE =
-        {
+    int[][] SCANNER_TABLE = 
+    {
         {9, 1},
         {10, 1},
         {32, 1},
@@ -1048,27 +1046,24 @@
         {60, 38}
     };
 
-        public int[] TOKEN_STATE = { -2, 0, 4, -1, -1, 16, 17, 11, 9, 13, 10, 12, 33, 33, 14, 7, 15, 8, 18, 18, -1, 6, 35, -1, 2, -1, 5, -2, -2, 3, 34, -2, 32, 32, -1, -2, 32, -2, 0 };
+    int[] TOKEN_STATE = {-2,  0,  4, -1, -1, 16, 17, 11,  9, 13, 10, 12, 33, 33, 14,  7, 15,  8, 18, 18, -1,  6, 35, -1,  2, -1,  5, -2, -2,  3, 34, -2, 32, 32, -1, -2, 32, -2,  0 };
 
-        public int[] SPECIAL_CASES_INDEXES =
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13 };
+    int[] SPECIAL_CASES_INDEXES =
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13 };
 
-        public String[] SPECIAL_CASES_KEYS =
-            {  "elif", "else", "end", "false", "if", "main", "read", "repeat", "true", "until", "while", "write", "writeln" };
+    String[] SPECIAL_CASES_KEYS =
+        {  "elif", "else", "end", "false", "if", "main", "read", "repeat", "true", "until", "while", "write", "writeln" };
 
-        public int[] SPECIAL_CASES_VALUES =
-            {  22, 23, 20, 24, 21, 19, 26, 29, 25, 30, 31, 27, 28 };
+    int[] SPECIAL_CASES_VALUES =
+        {  22, 23, 20, 24, 21, 19, 26, 29, 25, 30, 31, 27, 28 };
 
-        public String[] SCANNER_ERROR =
-        {
-        "símbolo inválido",
+    String[] SCANNER_ERROR =
+    {
+        "Caractere n�o esperado",
         "",
         "",
-        "constante_string inválida",
-        "símbolo inválido",
-        "",
-        "",
-        "",
+        "Erro identificando string",
+        "Erro identificando \"&&\"",
         "",
         "",
         "",
@@ -1081,25 +1076,28 @@
         "",
         "",
         "",
-        "símbolo inválido",
         "",
         "",
-        "constante_string inválida",
+        "",
+        "Erro identificando \"||\"",
+        "",
+        "",
+        "Erro identificando string",
         "",
         "Erro identificando float",
         "",
-        "comentário de bloco inválido ou não finalizado",
-        "identificador inválido",
+        "Erro identificando <ignorar>",
+        "Erro identificando identificador",
         "",
         "",
-        "comentário de bloco inválido ou não finalizado",
+        "Erro identificando <ignorar>",
         "",
         "",
         "Erro identificando float",
-        "comentário de bloco inválido ou não finalizado",
+        "Erro identificando <ignorar>",
         "",
-        "comentário de bloco inválido ou não finalizado",
+        "Erro identificando <ignorar>",
         ""
     };
-    }
+
 }
