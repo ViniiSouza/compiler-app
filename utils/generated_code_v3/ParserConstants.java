@@ -1,14 +1,12 @@
-﻿namespace SyntaticAnalyzer
+public interface ParserConstants
 {
-    public class ParserConstants
+    int START_SYMBOL = 36;
+
+    int FIRST_NON_TERMINAL    = 36;
+    int FIRST_SEMANTIC_ACTION = 72;
+
+    int[][] PARSER_TABLE =
     {
-        public const int START_SYMBOL = 36;
-
-        public const int FIRST_NON_TERMINAL = 36;
-        public const int FIRST_SEMANTIC_ACTION = 72;
-
-        public readonly int[,] PARSER_TABLE =
-        {
         { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
         { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1,  1,  1,  1,  1, -1, -1,  1, -1, -1, -1 },
         { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  3,  2, -1, -1, -1, -1,  2,  2,  2,  2, -1, -1,  2, -1, -1, -1 },
@@ -47,158 +45,157 @@
         { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 33, -1, -1, -1, 34, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
     };
 
-        public readonly int[][] PRODUCTIONS =
-        {
-        [ 172,  19,  37,  20, 173 ],
-        [  39,  38 ],
-        [  37 ],
-        [   0 ],
-        [  66,  14 ],
-        [  42,  67 ],
-        [  44 ],
-        [  45 ],
-        [  46 ],
-        [  47 ],
-        [  15,  51, 175 ],
-        [ 174 ],
-        [  32, 176,  68 ],
-        [  13,  42 ],
-        [   0 ],
-        [  41,  14,  69 ],
-        [  40 ],
-        [   0 ],
-        [  43 ],
-        [  44 ],
-        [  45 ],
-        [  46 ],
-        [  47 ],
-        [  42,  15,  51, 175 ],
-        [  26,  16,  48,  17 ],
-        [  49,  32, 177,  70 ],
-        [  13,  48 ],
-        [   0 ],
-        [  35, 178,  13 ],
-        [   0 ],
-        [  27,  16,  50,  17 ],
-        [  28,  16,  50,  17, 179 ],
-        [  51, 180,  71 ],
-        [  13,  50 ],
-        [   0 ],
-        [  21,  51, 181,  40,  52, 182,  54, 183,  20 ],
-        [  53,  52 ],
-        [   0 ],
-        [ 182,  22,  51, 184,  40 ],
-        [  23,  40 ],
-        [   0 ],
-        [ 185,  29,  40,  55 ],
-        [  31,  51, 186 ],
-        [  30,  51, 187 ],
-        [  64,  65 ],
-        [   0 ],
-        [   2,  64, 188,  65 ],
-        [   3,  64, 189,  65 ],
-        [  63 ],
-        [  25, 190 ],
-        [  24, 191 ],
-        [   4,  64, 192 ],
-        [  60,  62 ],
-        [   0 ],
-        [  61, 193,  60, 194 ],
-        [   5 ],
-        [   6 ],
-        [   7 ],
-        [   8 ],
-        [  58,  59 ],
-        [   0 ],
-        [   9,  58, 195,  59 ],
-        [  10,  58, 196,  59 ],
-        [  56,  57 ],
-        [   0 ],
-        [  11,  56, 197,  57 ],
-        [  12,  56, 198,  57 ],
-        [  32, 199 ],
-        [  33, 200 ],
-        [  34, 201 ],
-        [  35, 202 ],
-        [  16,  51,  17 ],
-        [   9,  56 ],
-        [  10,  56, 203 ]
+    int[][] PRODUCTIONS = 
+    {
+        { 172,  19,  37,  20, 173 },
+        {  39,  38 },
+        {  37 },
+        {   0 },
+        {  66,  14 },
+        {  42,  67 },
+        {  44 },
+        {  45 },
+        {  46 },
+        {  47 },
+        {  15,  51, 175 },
+        { 174 },
+        {  32, 176,  68 },
+        {  13,  42 },
+        {   0 },
+        {  41,  14,  69 },
+        {  40 },
+        {   0 },
+        {  43 },
+        {  44 },
+        {  45 },
+        {  46 },
+        {  47 },
+        {  42,  15,  51, 175 },
+        {  26,  16,  48,  17 },
+        {  49,  32, 177,  70 },
+        {  13,  48 },
+        {   0 },
+        {  35, 178,  13 },
+        {   0 },
+        {  27,  16,  50,  17 },
+        {  28,  16,  50,  17, 179 },
+        {  51, 180,  71 },
+        {  13,  50 },
+        {   0 },
+        {  21,  51, 181,  40,  52, 182,  54, 183,  20 },
+        {  53,  52 },
+        {   0 },
+        { 182,  22,  51, 184,  40 },
+        {  23,  40 },
+        {   0 },
+        { 185,  29,  40,  55 },
+        {  31,  51, 186 },
+        {  30,  51, 187 },
+        {  64,  65 },
+        {   0 },
+        {   2,  64, 188,  65 },
+        {   3,  64, 189,  65 },
+        {  63 },
+        {  25, 190 },
+        {  24, 191 },
+        {   4,  64, 192 },
+        {  60,  62 },
+        {   0 },
+        {  61, 193,  60, 194 },
+        {   5 },
+        {   6 },
+        {   7 },
+        {   8 },
+        {  58,  59 },
+        {   0 },
+        {   9,  58, 195,  59 },
+        {  10,  58, 196,  59 },
+        {  56,  57 },
+        {   0 },
+        {  11,  56, 197,  57 },
+        {  12,  56, 198,  57 },
+        {  32, 199 },
+        {  33, 200 },
+        {  34, 201 },
+        {  35, 202 },
+        {  16,  51,  17 },
+        {   9,  56 },
+        {  10,  56, 203 }
     };
 
-        public readonly String[] PARSER_ERROR =
-        {
+    String[] PARSER_ERROR =
+    {
         "",
-        "esperado EOF",
-        "esperado &&",
-        "esperado ||",
-        "esperado !",
-        "esperado ==",
-        "esperado !=",
-        "esperado <",
-        "esperado >",
-        "esperado +",
-        "esperado -",
-        "esperado *",
-        "esperado /",
-        "esperado ,",
-        "esperado ;",
-        "esperado =",
-        "esperado (",
-        "esperado )",
-        "esperado palavra",
-        "esperado end",
-        "esperado if",
-        "esperado elif",
-        "esperado else",
-        "esperado false",
-        "esperado true",
-        "esperado read",
-        "esperado main",
-        "esperado write",
-        "esperado writeln",
-        "esperado repeat",
-        "esperado until",
-        "esperado while",
-        "esperado identificador",
-        "esperado int",
-        "esperado float",
-        "esperado string",
-        "esperado main", //"<main> inválido"
-        "esperado identificador read write writeln if repeat", //"<lista_instrucoes> inválido"
-        "esperado end if read write writeln repeat identificador", //"<opc_lista_instrucoes> inválido"
-        "esperado if read wrtie writeln repeat identificador", //"<instrucao> inválido"
-        "esperado if read write writeln repeat identificador", //"<lista_comando> inválido"
-        "esperado if read write writeln repeat identificador", //"<comando> inválido"
-        "esperado identificador", //"<lista_id> inválido"
-        "esperado identificador", //"<atribuicao> inválido"
-        "esperado read", //"<entrada> inválido"
-        "esperado write writeln", //"<saida> inválido"
-        "esperado if", //"<selecao> inválido"
-        "esperado repeat", //"<repeticao> inválido"
-        "esperado identificador string", //"<lista_entrada> inválido"
-        "esperado identificador string", //"<opcional_string> inválido"
-        "esperado expressao", //"<lista_exp> inválido"
-        "esperado expressao", //"<expressao> inválido"
-        "esperado end elif else", //"<opcional_elif> inválido"
-        "esperado elif", //"<elif> inválido"
-        "esperado end else", //"<opcional_else> inválido"
-        "esperado until while", //"<repeat_comando> inválido"
-        "esperado expressao", //"<fator> inválido"
-        "esperado expressao", //"<termo1> inválido"
-        "esperado expressao", //"<termo> inválido"
-        "esperado expressao", //"<aritmetica1> inválido"
-        "esperado expressao", //"<aritmetica> inválido"
-        "esperado == != < >", //"<operador_relacional> inválido"
-        "esperado expressao", //"<relacional1> inválido"
-        "esperado expressao", //"<relacional> inválido"
-        "esperado expressao", //"<elemento> inválido"
-        "esperado expressao", //"<expressao1> inválido"
-        "esperado if read write writeln repeat identificador", //"<opc_instrucao> inválido"
-        "esperado ; = ", //"<opc_atribuicao> inválido"
-        "esperado , ; =", //"<opc_lista_id> inválido"
-        "esperado end if elif else read write writeln repeat until while identificador", //"<opc_lista_comando> inválido"
-        "esperado , )", //"<opc_lista_entrada> inválido"
-        "esperado , )", //"<opc_lista_exp> inválido"
+        "Era esperado fim de programa",
+        "Era esperado \"&&\"",
+        "Era esperado \"||\"",
+        "Era esperado \"!\"",
+        "Era esperado \"==\"",
+        "Era esperado \"!=\"",
+        "Era esperado \"<\"",
+        "Era esperado \">\"",
+        "Era esperado \"+\"",
+        "Era esperado \"-\"",
+        "Era esperado \"*\"",
+        "Era esperado \"/\"",
+        "Era esperado \",\"",
+        "Era esperado \";\"",
+        "Era esperado \"=\"",
+        "Era esperado \"(\"",
+        "Era esperado \")\"",
+        "Era esperado palavra",
+        "Era esperado main",
+        "Era esperado end",
+        "Era esperado if",
+        "Era esperado elif",
+        "Era esperado else",
+        "Era esperado false",
+        "Era esperado true",
+        "Era esperado read",
+        "Era esperado write",
+        "Era esperado writeln",
+        "Era esperado repeat",
+        "Era esperado until",
+        "Era esperado while",
+        "Era esperado identificador",
+        "Era esperado int",
+        "Era esperado float",
+        "Era esperado string",
+        "<main> inválido",
+        "<lista_instrucoes> inválido",
+        "<opc_lista_instrucoes> inválido",
+        "<instrucao> inválido",
+        "<lista_comando> inválido",
+        "<comando> inválido",
+        "<lista_id> inválido",
+        "<atribuicao> inválido",
+        "<entrada> inválido",
+        "<saida> inválido",
+        "<selecao> inválido",
+        "<repeticao> inválido",
+        "<lista_entrada> inválido",
+        "<opcional_string> inválido",
+        "<lista_exp> inválido",
+        "<expressao> inválido",
+        "<opcional_elif> inválido",
+        "<elif> inválido",
+        "<opcional_else> inválido",
+        "<repeat_comando> inválido",
+        "<fator> inválido",
+        "<termo1> inválido",
+        "<termo> inválido",
+        "<aritmetica1> inválido",
+        "<aritmetica> inválido",
+        "<operador_relacional> inválido",
+        "<relacional1> inválido",
+        "<relacional> inválido",
+        "<elemento> inválido",
+        "<expressao1> inválido",
+        "<opc_instrucao> inválido",
+        "<opc_atribuicao> inválido",
+        "<opc_lista_id> inválido",
+        "<opc_lista_comando> inválido",
+        "<opc_lista_entrada> inválido",
+        "<opc_lista_exp> inválido"
     };
-    }
 }
