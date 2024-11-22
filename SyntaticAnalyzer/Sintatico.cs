@@ -71,11 +71,12 @@ namespace SyntaticAnalyzer
                 else
                     throw new SyntaticError(parserConstants.PARSER_ERROR[x], currentToken.GetPosition(), currentToken.GetLexeme());
             }
-            else // isSemanticAction(x)
+            else if (IsSemanticAction(x))
             {
                 semanticAnalyser.ExecuteAction(x - ParserConstants.FIRST_SEMANTIC_ACTION, previousToken);
                 return false;
             }
+            return false;
         }
 
         private bool PushProduction(int topStack, int tokenInput)

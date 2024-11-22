@@ -176,6 +176,8 @@ namespace CompiladorApp
                 if (tokenList.Any())
                     messagesTextBox.Text = string.Join(Environment.NewLine, tokenList);
 
+                FileGenerator.Generate(_filePath, semantico.GetCodigo());
+
                 messagesTextBox.AppendText("Programa compilado com sucesso.");
             }
         }
