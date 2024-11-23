@@ -176,9 +176,14 @@ namespace CompiladorApp
                 if (tokenList.Any())
                     messagesTextBox.Text = string.Join(Environment.NewLine, tokenList);
 
-                FileGenerator.Generate(_filePath, semantico.GetCodigo());
+                if (string.IsNullOrEmpty(_filePath))
+                    messagesTextBox.AppendText("Arquivo não salvo, não é possível compilar o código.");
+                else
+                {
+                    FileGenerator.Generate(_filePath, semantico.GetCodigo());
 
-                messagesTextBox.AppendText("Programa compilado com sucesso.");
+                    messagesTextBox.AppendText("Programa compilado com sucesso.");
+                }
             }
         }
 
