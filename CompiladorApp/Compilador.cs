@@ -1,4 +1,4 @@
-using LexicalAnalyzer;
+ï»¿using LexicalAnalyzer;
 using SyntaticAnalyzer;
 using SemanticAnalyzer;
 using AnalyzerUtils;
@@ -189,7 +189,7 @@ namespace CompiladorApp
 
         private void teamButton_Click(object sender, EventArgs e)
         {
-            messagesTextBox.Text = "Cristian Monster\r\nLucas de Farias Teixeira\r\nVinícius Gabriel de Souza";
+            messagesTextBox.Text = "Cristian Monster\r\nLucas de Farias Teixeira\r\nVinÃ­cius Gabriel de Souza";
         }
 
         private void Compilador_KeyDown(object sender, KeyEventArgs e)
@@ -214,7 +214,7 @@ namespace CompiladorApp
             {
                 teamButton_Click(sender, e);
             }
-            // os itens abaixo já funcionam de maneira nativa, validar se futuramente será preciso corrigir
+            // os itens abaixo jÃ¡ funcionam de maneira nativa, validar se futuramente serÃ¡ preciso corrigir
             //else if (e.Control && e.KeyCode == Keys.C)
             //{
             //    copyButton_Click(sender, e);
@@ -232,7 +232,7 @@ namespace CompiladorApp
         private string GetTokenClassName(int tokenId)
         {
             if (tokenId >= 2 && tokenId <= 17)
-                return "símbolo especial";
+                return "sÃ­mbolo especial";
             else if (tokenId >= 19 && tokenId <= 31)
                 return "palavra reservada";
             else
@@ -247,7 +247,7 @@ namespace CompiladorApp
                     case 35:
                         return "constante_string";
                     default:
-                        return "classe não esperada";
+                        return "classe nÃ£o esperada";
                 }
         }
     }
