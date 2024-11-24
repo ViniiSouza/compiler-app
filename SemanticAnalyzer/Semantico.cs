@@ -1,17 +1,6 @@
 ﻿using AnalyzerUtils;
 using System.Collections;
-using System.Collections.Generic.Dictionary;
-
-Dictionary<string, string> RelationalOperators = new Dictionary<string, string>();
-RelationalOperators.Add("==", "cet");
-RelationalOperators.Add("!=", "cet\nnot");
-RelationalOperators.Add("<", "clt");
-RelationalOperators.Add(">", "cgt");
-
-Dictionary<string, string> TypeClasses = new Dictionary<string, string>();
-RelationalOperators.Add("int64", "Int64");
-RelationalOperators.Add("float64", "Double");
-RelationalOperators.Add("bool", "Boolean");
+using System.Collections.Generic;
 
 namespace SemanticAnalyzer
 {
@@ -22,7 +11,21 @@ namespace SemanticAnalyzer
         private List<string> ListaIdentificadores = [];
         private List<string> Codigo = [];
         private Dictionary<string, string> TabelaSimbolos = new Dictionary<string, string>();
-        private OperadorRelacional string;
+        private string OperadorRelacional = "";
+        private Dictionary<string, string> RelationalOperators = new Dictionary<string, string>();
+        private Dictionary<string, string> TypeClasses = new Dictionary<string, string>();
+
+
+        public Semantico()
+        {
+            RelationalOperators.Add("==", "cet");
+            RelationalOperators.Add("!=", "cet\nnot");
+            RelationalOperators.Add("<", "clt");
+            RelationalOperators.Add(">", "cgt");
+            TypeClasses.Add("int64", "Int64");
+            TypeClasses.Add("float64", "Double");
+            TypeClasses.Add("bool", "Boolean");
+        }
 
         public void ExecuteAction(int action, Token token)
         {
@@ -84,38 +87,38 @@ namespace SemanticAnalyzer
                     break;
                 // operador aritmetico binario "+"
                 case 123:
-                    string tipo1 = PilhaTipos.Pop();
-                    string tipo2 = PilhaTipos.Pop();
+                    string tipo1 = (string) PilhaTipos.Pop();
+                    string tipo2 = (string) PilhaTipos.Pop();
                     ValidateTypes(tipo1, tipo2);
                     AppendToCode("add");
                     break;
                 // operador aritmetico binario "-"
                 case 124:
-                    string tipo1 = PilhaTipos.Pop();
-                    string tipo2 = PilhaTipos.Pop();
+                    tipo1 = (string) PilhaTipos.Pop();
+                    tipo2 = (string) PilhaTipos.Pop();
                     ValidateTypes(tipo1, tipo2);
                     AppendToCode("sub");
                     break;
                 // operador aritmetico binario "*"
                 case 125:
-                    string tipo1 = PilhaTipos.Pop();
-                    string tipo2 = PilhaTipos.Pop();
+                    tipo1 = (string) PilhaTipos.Pop();
+                    tipo2 = (string) PilhaTipos.Pop();
                     ValidateTypes(tipo1, tipo2);
                     AppendToCode("mul");
                     break;
                 // operador aritmetico binario "/"
-                case 126
-                    string tipo1 = PilhaTipos.Pop();
-                    string tipo2 = PilhaTipos.Pop();
+                case 126:
+                    tipo1 = (string) PilhaTipos.Pop();
+                    tipo2 = (string) PilhaTipos.Pop();
 
                     if (tipo1 != "int64" || tipo1 != "float64")
                     {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
 
                     if (tipo2 != "int64" || tipo2 != "float64")
                     {
-                        throw SemanticError
+                        throw new SemanticError("a", 1);
                     }
 
                     PilhaTipos.Push("float64");
@@ -127,20 +130,20 @@ namespace SemanticAnalyzer
                     break;
                 // executar operacao relacional
                 case 122:
-                    string tipo1 = PilhaTipos.Pop();
-                    string tipo2 = PilhaTipos.Pop();
+                    tipo1 = (string) PilhaTipos.Pop();
+                    tipo2 = (string) PilhaTipos.Pop();
                     if (tipo1 != tipo2) {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
                     PilhaTipos.Push("bool");
                     AppendToCode(RelationalOperators[OperadorRelacional]);
                     break;
                 // operador logico unario "!"
                 case 120:
-                    string tipo = PilhaTipos.Pop();
-                    if (PilhaTipos != "bool")
+                    string tipo = (string) PilhaTipos.Pop();
+                    if (tipo != "bool")
                     {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
         
                     AppendToCode(
@@ -150,17 +153,17 @@ namespace SemanticAnalyzer
                     break;
                 // operador logico &&
                 case 116:
-                    string tipo1 = PilhaTipos.Pop();
-                    string tipo2 = PilhaTipos.Pop();
+                    tipo1 = (string) PilhaTipos.Pop();
+                    tipo2 = (string) PilhaTipos.Pop();
 
                     if (tipo1 != "bool")
                     {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
 
                     if (tipo2 != "bool")
                     {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
 
                     PilhaTipos.Push("bool");
@@ -168,17 +171,17 @@ namespace SemanticAnalyzer
                     break;
                 // operador logico ||
                 case 117:
-                    string tipo1 = PilhaTipos.Pop();
-                    string tipo2 = PilhaTipos.Pop();
+                    tipo1 = (string) PilhaTipos.Pop();
+                    tipo2 = (string) PilhaTipos.Pop();
 
                     if (tipo1 != "bool")
                     {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
 
                     if (tipo2 != "bool")
                     {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
 
                     PilhaTipos.Push("bool");
@@ -189,10 +192,10 @@ namespace SemanticAnalyzer
                     string identificador = token.GetLexeme();
                     if (!TabelaSimbolos.ContainsKey(identificador))
                     {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
 
-                    string tipo = TabelaSimbolos[identificador];
+                    tipo = TabelaSimbolos[identificador];
                     PilhaTipos.Push(tipo);
                     AppendToCode($"ldloc {token.GetLexeme()}");
 
@@ -204,7 +207,7 @@ namespace SemanticAnalyzer
                     break;
                 // comando de saida (write)
                 case 108:
-                    string tipo = PilhaTipos.Pop();
+                    tipo = (string) PilhaTipos.Pop();
                     if (tipo == "int64")
                     {
                         AppendToCode("conv.i8");
@@ -225,20 +228,20 @@ namespace SemanticAnalyzer
                     break;
                 // declara variavel
                 case 102:
-                    string identificador = token.GetLexeme();
+                    identificador = token.GetLexeme();
                     if (!TabelaSimbolos.ContainsKey(identificador))
                     {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
 
-                    string tipo = ExtractType(identificador);
+                    tipo = ExtractType(identificador);
                     TabelaSimbolos.Add(identificador, tipo);
-                    AppendToCode($".locals ({tipo} {identificador})")
+                    AppendToCode($".locals ({tipo} {identificador})");
                     ListaIdentificadores.Clear();
                     break;
                 // atribuicao de valores
                 case 103:
-                    string tipo = PilhaTipos.Pop();
+                    tipo = (string) PilhaTipos.Pop();
                     if (tipo == "int64")
                     {
                         AppendToCode("conv.i8");
@@ -249,14 +252,14 @@ namespace SemanticAnalyzer
                         AppendToCode("dup");
                     }
 
-                    foreach (string identificador in ListaIdentificadores)
+                    foreach (string id in ListaIdentificadores)
                     {
-                        if (!TabelaSimbolos.ContainsKey(identificador))
+                        if (!TabelaSimbolos.ContainsKey(id))
                         {
-                            throw SemanticError;
+                            throw new SemanticError("a", 1);
                         }
 
-                        AppendToCode($"stloc {identificador}");
+                        AppendToCode($"stloc {id}");
 
                     }
 
@@ -271,14 +274,14 @@ namespace SemanticAnalyzer
                     break;
                 // comando de entrada (read)
                 case 105:
-                    string identificador = token.GetLexeme();
+                    identificador = token.GetLexeme();
                     if (!TabelaSimbolos.ContainsKey(identificador))
                     {
-                        throw SemanticError;
+                        throw new SemanticError("a", 1);
                     }
 
                     AppendToCode("call string [mscorlib]System.Console::ReadLine()");
-                    string tipo = TabelaSimbolos[identificador];
+                    tipo = TabelaSimbolos[identificador];
                     if (tipo != "string")
                     {
                         AppendToCode($"call {tipo} [mscorlib]System.{TypeClasses[tipo]}::Parse(string)");
@@ -302,31 +305,31 @@ namespace SemanticAnalyzer
             return string.Join("\n", Codigo);
         }
 
-        public void ValidateTypes(type1 string, type2 string)
+        public void ValidateTypes(string type1, string type2)
         {
             if (type1 == "int64")
             {
                 if (type2 == "int64")
                 {
-                    PilhaTipos.Push("int64")
+                    PilhaTipos.Push("int64");
                 } else if (type2 == "float64")
                 {
-                    PilhaTipos.Push("float64")
+                    PilhaTipos.Push("float64");
                 } else
                 {
-                    throw SemanticError
+                    throw new SemanticError("a", 1);
                 }
             } else if (type1 == "float64")
             {
                 if (type2 != "int64" || type2 != "float64")
                 {
-                    throw SemanticError
+                    throw new SemanticError("a", 1);
                 }
 
-                PilhaTipos.Push("float64")
+                PilhaTipos.Push("float64");
             } else
             {
-                throw SemanticError
+                throw new SemanticError("a", 1);
             }
         }
 
@@ -343,8 +346,8 @@ namespace SemanticAnalyzer
                     return "string";
                 case "b":
                     return "bool";
-                case default:
-                    throw SemanticError;
+                default:
+                    throw new SemanticError("a", 1);
             }
         }
     }
