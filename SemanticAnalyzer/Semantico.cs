@@ -14,6 +14,7 @@ namespace SemanticAnalyzer
         private string OperadorRelacional = "";
         private Dictionary<string, string> RelationalOperators = new Dictionary<string, string>();
         private Dictionary<string, string> TypeClasses = new Dictionary<string, string>();
+        private int contadorRotulos = 0;
 
 
         public Semantico()
@@ -289,10 +290,65 @@ namespace SemanticAnalyzer
 
                     AppendToCode($"stloc {identificador}");
                     break;
+                //if caso o resultado da avaliasao for false
+                case 109:
+                    string novoRotulo1 = GenerateLabel();
+                    PilhaRotulos.Push(novoRotulo1);
+
+                    string novoRotulo2 = GenerateLabel();
+                    PilhaRotulos.Push(novoRotulo2);
+
+                    AppendToCode($"brfalse {novoRotulo2}");
+                    break;
+
+                case 110:
+                    string rotulo_Desempilhado1 = (string)PilhaRotulos.Pop();
+                    string rotulo_Desempilhado2 = (string)PilhaRotulos.Pop();
+
+                    AppendToCode($"br {rotulo_Desempilhado1}");
+
+                    PilhaRotulos.Push(rotulo_Desempilhado1);
+
+                    AppendToCode($"{rotulo_Desempilhado2}:");
+                    break;
+                case 111:
+                    string rotulo_Desempilhado = (string)PilhaRotulos.Pop();
+
+                    AppendToCode($"{rotulo_Desempilhado}:");
+                    break;
+                case 112:
+                    string novoRotulo = GenerateLabel();
+
+                    AppendToCode($"brfalse {novoRotulo}");
+
+                    PilhaRotulos.Push(novoRotulo);
+                    break;
+                case 113:
+                    novoRotulo = GenerateLabel();
+                    AppendToCode($"{novoRotulo}:");
+
+                    PilhaRotulos.Push(novoRotulo);
+                    break;
+                case 114:
+                    rotulo_Desempilhado = (string)PilhaRotulos.Pop();
+                    AppendToCode($"brtrue {rotulo_Desempilhado}");
+
+                    break;
+                case 115:
+                    rotulo_Desempilhado = (string)PilhaRotulos.Pop();
+                    AppendToCode($"brfalse {rotulo_Desempilhado}");
+
+                    break;
                 default:
                     // em teoria não deveria chegar aqui
                     break;
             }
+        }
+
+        //Gera um rótulo novo único
+        public string GenerateLabel() 
+        {
+            return $"Label{contadorRotulos++}";
         }
 
         public void AppendToCode(params string[] linhas)
