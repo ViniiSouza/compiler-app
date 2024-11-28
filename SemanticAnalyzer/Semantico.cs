@@ -19,8 +19,8 @@ namespace SemanticAnalyzer
 
         public Semantico()
         {
-            RelationalOperators.Add("==", "cet");
-            RelationalOperators.Add("!=", "cet\nnot");
+            RelationalOperators.Add("==", "ceq");
+            RelationalOperators.Add("!=", "ceq\nnot");
             RelationalOperators.Add("<", "clt");
             RelationalOperators.Add(">", "cgt");
             TypeClasses.Add("int64", "Int64");
