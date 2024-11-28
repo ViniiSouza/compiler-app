@@ -19,8 +19,8 @@ namespace SemanticAnalyzer
 
         public Semantico()
         {
-            RelationalOperators.Add("==", "cet");
-            RelationalOperators.Add("!=", "cet\nnot");
+            RelationalOperators.Add("==", "ceq");
+            RelationalOperators.Add("!=", "ceq\nnot");
             RelationalOperators.Add("<", "clt");
             RelationalOperators.Add(">", "cgt");
             TypeClasses.Add("int64", "Int64");
@@ -305,8 +305,8 @@ namespace SemanticAnalyzer
                     break;
 
                 case 110:
-                    string rotulo_Desempilhado1 = (string)PilhaRotulos.Pop();
                     string rotulo_Desempilhado2 = (string)PilhaRotulos.Pop();
+                    string rotulo_Desempilhado1 = (string)PilhaRotulos.Pop();
 
                     AppendToCode($"br {rotulo_Desempilhado1}");
 
@@ -327,19 +327,19 @@ namespace SemanticAnalyzer
                     PilhaRotulos.Push(novoRotulo);
                     break;
                 case 113:
-                    novoRotulo = GenerateLabel();
-                    AppendToCode($"{novoRotulo}:");
+                    string novoRotulo5 = GenerateLabel();
+                    AppendToCode($"{novoRotulo5}:");
 
-                    PilhaRotulos.Push(novoRotulo);
+                    PilhaRotulos.Push(novoRotulo5);
                     break;
                 case 114:
-                    rotulo_Desempilhado = (string)PilhaRotulos.Pop();
-                    AppendToCode($"brtrue {rotulo_Desempilhado}");
+                    string rotulo_Desempilhado3 = (string)PilhaRotulos.Pop();
+                    AppendToCode($"brtrue {rotulo_Desempilhado3}");
 
                     break;
                 case 115:
-                    rotulo_Desempilhado = (string)PilhaRotulos.Pop();
-                    AppendToCode($"brfalse {rotulo_Desempilhado}");
+                    string rotulo_Desempilhado7 = (string)PilhaRotulos.Pop();
+                    AppendToCode($"brfalse {rotulo_Desempilhado7}");
 
                     break;
                 default:
