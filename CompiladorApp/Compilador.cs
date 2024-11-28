@@ -137,6 +137,13 @@ namespace CompiladorApp
 
         private void compileButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(_filePath))
+            {
+                messagesTextBox.Clear();
+                messagesTextBox.AppendText("Arquivo não salvo, não é possível compilar o código.");
+                return;
+            }
+
             string sourceCode = lineNumberRtb.richTextBox.Text;
             Lexico scanner = new();
             Sintatico sintatico = new();
@@ -182,14 +189,10 @@ namespace CompiladorApp
                 if (tokenList.Any())
                     messagesTextBox.Text = string.Join(Environment.NewLine, tokenList);
 
-                if (string.IsNullOrEmpty(_filePath))
-                    messagesTextBox.AppendText("Arquivo não salvo, não é possível compilar o código.");
-                else
-                {
-                    FileGenerator.Generate(_filePath, semantico.GetCodigo());
+                
+                FileGenerator.Generate(_filePath, semantico.GetCodigo());
 
-                    messagesTextBox.AppendText("Programa compilado com sucesso.");
-                }
+                messagesTextBox.AppendText("Programa compilado com sucesso.");
             }
         }
 
