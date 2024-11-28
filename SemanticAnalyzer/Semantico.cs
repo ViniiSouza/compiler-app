@@ -90,21 +90,21 @@ namespace SemanticAnalyzer
                 case 123:
                     string tipo1 = (string)PilhaTipos.Pop();
                     string tipo2 = (string)PilhaTipos.Pop();
-                    ValidateTypes(tipo1, tipo2);
+                    ValidateTypes(tipo1, tipo2, token);
                     AppendToCode("add");
                     break;
                 // operador aritmetico binario "-"
                 case 124:
                     tipo1 = (string)PilhaTipos.Pop();
                     tipo2 = (string)PilhaTipos.Pop();
-                    ValidateTypes(tipo1, tipo2);
+                    ValidateTypes(tipo1, tipo2, token);
                     AppendToCode("sub");
                     break;
                 // operador aritmetico binario "*"
                 case 125:
                     tipo1 = (string)PilhaTipos.Pop();
                     tipo2 = (string)PilhaTipos.Pop();
-                    ValidateTypes(tipo1, tipo2);
+                    ValidateTypes(tipo1, tipo2, token);
                     AppendToCode("mul");
                     break;
                 // operador aritmetico binario "/"
@@ -237,7 +237,7 @@ namespace SemanticAnalyzer
                             throw new SemanticError($"{id} já declarado", token.GetPosition());
                         }
 
-                        tipo = ExtractType(id);
+                        tipo = ExtractType(id, token);
                         TabelaSimbolos.Add(id, tipo);
                         AppendToCode($".locals ({tipo} {id})");
                     }
@@ -364,7 +364,7 @@ namespace SemanticAnalyzer
             return string.Join("\n", Codigo);
         }
 
-        public void ValidateTypes(string type1, string type2)
+        public void ValidateTypes(string type1, string type2, Token token)
         {
             if (type1 == "int64")
             {
@@ -378,14 +378,14 @@ namespace SemanticAnalyzer
                 }
                 else
                 {
-                    throw new SemanticError($"Tipo {type2} não compatível com {type1}", 1);
+                    throw new SemanticError($"Tipo {type2} não compatível com {type1}", token.GetPosition());
                 }
             }
             else if (type1 == "float64")
             {
                 if (type2 != "int64" && type2 != "float64")
                 {
-                    throw new SemanticError($"Tipo {type1} não compatível com {type2}", 1);
+                    throw new SemanticError($"Tipo {type1} não compatível com {type2}", token.GetPosition());
                 }
 
                 PilhaTipos.Push("float64");
@@ -396,7 +396,7 @@ namespace SemanticAnalyzer
             }
         }
 
-        public string ExtractType(string identifier)
+        public string ExtractType(string identifier, Token token)
         {
             string prefix = identifier.Split("_")[0];
             switch (prefix)
@@ -410,7 +410,7 @@ namespace SemanticAnalyzer
                 case "b":
                     return "bool";
                 default:
-                    throw new SemanticError($"Tipo {prefix} inválido", 1);
+                    throw new SemanticError($"Tipo {prefix} inválido", token.GetPosition());
             }
         }
     }
