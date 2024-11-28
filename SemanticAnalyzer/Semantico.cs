@@ -383,7 +383,7 @@ namespace SemanticAnalyzer
             }
             else if (type1 == "float64")
             {
-                if (type2 != "int64" || type2 != "float64")
+                if (type2 != "int64" && type2 != "float64")
                 {
                     throw new SemanticError($"Tipo {type1} não compatível com {type2}", 1);
                 }
