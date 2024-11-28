@@ -114,12 +114,12 @@ namespace SemanticAnalyzer
 
                     if (tipo1 != "int64" && tipo1 != "float64")
                     {
-                        throw new SemanticError($"Operando mais à esquerda deve ser numérico", token.GetPosition());
+                        throw new SemanticError($"Operando mais à direita deve ser numérico", token.GetPosition());
                     }
 
                     if (tipo2 != "int64" && tipo2 != "float64")
                     {
-                        throw new SemanticError($"Operando mais à direita deve ser numérico", token.GetPosition());
+                        throw new SemanticError($"Operando mais à esquerda deve ser numérico", token.GetPosition());
                     }
 
                     PilhaTipos.Push("float64");
@@ -160,12 +160,12 @@ namespace SemanticAnalyzer
 
                     if (tipo1 != "bool")
                     {
-                        throw new SemanticError("Operando mais à esquerda deve ser booleano", token.GetPosition());
+                        throw new SemanticError("Operando mais à direita deve ser booleano", token.GetPosition());
                     }
 
                     if (tipo2 != "bool")
                     {
-                        throw new SemanticError("Operando mais à direita deve ser booleano", token.GetPosition());
+                        throw new SemanticError("Operando mais à esquerda deve ser booleano", token.GetPosition());
                     }
 
                     PilhaTipos.Push("bool");
@@ -178,12 +178,12 @@ namespace SemanticAnalyzer
 
                     if (tipo1 != "bool")
                     {
-                        throw new SemanticError("Operando mais à esquerda deve ser booleano", token.GetPosition());
+                        throw new SemanticError("Operando mais à direita deve ser booleano", token.GetPosition());
                     }
 
                     if (tipo2 != "bool")
                     {
-                        throw new SemanticError("Operando mais à direita deve ser booleano", token.GetPosition());
+                        throw new SemanticError("Operando mais à esquerda deve ser booleano", token.GetPosition());
                     }
 
                     PilhaTipos.Push("bool");
