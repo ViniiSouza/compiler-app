@@ -76,7 +76,7 @@ namespace SemanticAnalyzer
                 // constante string
                 case 130:
                     PilhaTipos.Push("string");
-                    AppendToCode($"ldstr \"{token.GetLexeme()}\"");
+                    AppendToCode($"ldstr {token.GetLexeme()}");
                     break;
                 // operador aritmético unário "-"
                 case 131:
