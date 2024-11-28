@@ -1,6 +1,6 @@
 ﻿using AnalyzerUtils;
+using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace SemanticAnalyzer
 {
@@ -30,8 +30,8 @@ namespace SemanticAnalyzer
 
         public void ExecuteAction(int action, Token token)
         {
-            Console.WriteLine("Ação #"+action+", Token: "+token);
-            switch (action) 
+            Console.WriteLine("Ação #" + action + ", Token: " + token);
+            switch (action)
             {
                 // cabeçalho do programa
                 case 100:
@@ -88,38 +88,38 @@ namespace SemanticAnalyzer
                     break;
                 // operador aritmetico binario "+"
                 case 123:
-                    string tipo1 = (string) PilhaTipos.Pop();
-                    string tipo2 = (string) PilhaTipos.Pop();
+                    string tipo1 = (string)PilhaTipos.Pop();
+                    string tipo2 = (string)PilhaTipos.Pop();
                     ValidateTypes(tipo1, tipo2);
                     AppendToCode("add");
                     break;
                 // operador aritmetico binario "-"
                 case 124:
-                    tipo1 = (string) PilhaTipos.Pop();
-                    tipo2 = (string) PilhaTipos.Pop();
+                    tipo1 = (string)PilhaTipos.Pop();
+                    tipo2 = (string)PilhaTipos.Pop();
                     ValidateTypes(tipo1, tipo2);
                     AppendToCode("sub");
                     break;
                 // operador aritmetico binario "*"
                 case 125:
-                    tipo1 = (string) PilhaTipos.Pop();
-                    tipo2 = (string) PilhaTipos.Pop();
+                    tipo1 = (string)PilhaTipos.Pop();
+                    tipo2 = (string)PilhaTipos.Pop();
                     ValidateTypes(tipo1, tipo2);
                     AppendToCode("mul");
                     break;
                 // operador aritmetico binario "/"
                 case 126:
-                    tipo1 = (string) PilhaTipos.Pop();
-                    tipo2 = (string) PilhaTipos.Pop();
+                    tipo1 = (string)PilhaTipos.Pop();
+                    tipo2 = (string)PilhaTipos.Pop();
 
-                    if (tipo1 != "int64" || tipo1 != "float64")
+                    if (tipo1 != "int64" && tipo1 != "float64")
                     {
-                        throw new SemanticError("a", 1);
+                        throw new SemanticError($"Operando mais à esquerda deve ser numérico", token.GetPosition());
                     }
 
-                    if (tipo2 != "int64" || tipo2 != "float64")
+                    if (tipo2 != "int64" && tipo2 != "float64")
                     {
-                        throw new SemanticError("a", 1);
+                        throw new SemanticError($"Operando mais à direita deve ser numérico", token.GetPosition());
                     }
 
                     PilhaTipos.Push("float64");
@@ -131,22 +131,23 @@ namespace SemanticAnalyzer
                     break;
                 // executar operacao relacional
                 case 122:
-                    tipo1 = (string) PilhaTipos.Pop();
-                    tipo2 = (string) PilhaTipos.Pop();
-                    if (tipo1 != tipo2) {
-                        throw new SemanticError("a", 1);
+                    tipo1 = (string)PilhaTipos.Pop();
+                    tipo2 = (string)PilhaTipos.Pop();
+                    if (tipo1 != tipo2)
+                    {
+                        throw new SemanticError($"Tipo {tipo1} não compatível com {tipo2}", token.GetPosition());
                     }
                     PilhaTipos.Push("bool");
                     AppendToCode(RelationalOperators[OperadorRelacional]);
                     break;
                 // operador logico unario "!"
                 case 120:
-                    string tipo = (string) PilhaTipos.Pop();
+                    string tipo = (string)PilhaTipos.Pop();
                     if (tipo != "bool")
                     {
-                        throw new SemanticError("a", 1);
+                        throw new SemanticError("Operando deve ser booleano", token.GetPosition());
                     }
-        
+
                     AppendToCode(
                         "ldc.i4.1",
                         "xor"
@@ -154,17 +155,17 @@ namespace SemanticAnalyzer
                     break;
                 // operador logico &&
                 case 116:
-                    tipo1 = (string) PilhaTipos.Pop();
-                    tipo2 = (string) PilhaTipos.Pop();
+                    tipo1 = (string)PilhaTipos.Pop();
+                    tipo2 = (string)PilhaTipos.Pop();
 
                     if (tipo1 != "bool")
                     {
-                        throw new SemanticError("a", 1);
+                        throw new SemanticError("Operando mais à esquerda deve ser booleano", token.GetPosition());
                     }
 
                     if (tipo2 != "bool")
                     {
-                        throw new SemanticError("a", 1);
+                        throw new SemanticError("Operando mais à direita deve ser booleano", token.GetPosition());
                     }
 
                     PilhaTipos.Push("bool");
@@ -172,17 +173,17 @@ namespace SemanticAnalyzer
                     break;
                 // operador logico ||
                 case 117:
-                    tipo1 = (string) PilhaTipos.Pop();
-                    tipo2 = (string) PilhaTipos.Pop();
+                    tipo1 = (string)PilhaTipos.Pop();
+                    tipo2 = (string)PilhaTipos.Pop();
 
                     if (tipo1 != "bool")
                     {
-                        throw new SemanticError("a", 1);
+                        throw new SemanticError("Operando mais à esquerda deve ser booleano", token.GetPosition());
                     }
 
                     if (tipo2 != "bool")
                     {
-                        throw new SemanticError("a", 1);
+                        throw new SemanticError("Operando mais à direita deve ser booleano", token.GetPosition());
                     }
 
                     PilhaTipos.Push("bool");
@@ -193,7 +194,7 @@ namespace SemanticAnalyzer
                     string identificador = token.GetLexeme();
                     if (!TabelaSimbolos.ContainsKey(identificador))
                     {
-                        throw new SemanticError("a", 1);
+                        throw new SemanticError($"{identificador} já declarado", token.GetPosition());
                     }
 
                     tipo = TabelaSimbolos[identificador];
@@ -208,7 +209,7 @@ namespace SemanticAnalyzer
                     break;
                 // comando de saida (write)
                 case 108:
-                    tipo = (string) PilhaTipos.Pop();
+                    tipo = (string)PilhaTipos.Pop();
                     if (tipo == "int64")
                     {
                         AppendToCode("conv.i8");
@@ -219,8 +220,8 @@ namespace SemanticAnalyzer
                 // quebra de linha por padrao (writeln)
                 case 107:
                     AppendToCode(
-                        "ldstr \"\\n\"",
-                        "call void [mscorlib]System.Console::Write(string)"
+                        "ldstr \"\"",
+                        "call void [mscorlib]System.Console::WriteLine(string)"
                     );
                     break;
                 // inserir identificador na lista de identificadores
@@ -229,26 +230,28 @@ namespace SemanticAnalyzer
                     break;
                 // declara variavel
                 case 102:
-                    identificador = token.GetLexeme();
-                    if (!TabelaSimbolos.ContainsKey(identificador))
+                    foreach (var id in ListaIdentificadores)
                     {
-                        throw new SemanticError("a", 1);
-                    }
+                        if (TabelaSimbolos.ContainsKey(id))
+                        {
+                            throw new SemanticError($"{id} já declarado", token.GetPosition());
+                        }
 
-                    tipo = ExtractType(identificador);
-                    TabelaSimbolos.Add(identificador, tipo);
-                    AppendToCode($".locals ({tipo} {identificador})");
+                        tipo = ExtractType(id);
+                        TabelaSimbolos.Add(id, tipo);
+                        AppendToCode($".locals ({tipo} {id})");
+                    }
                     ListaIdentificadores.Clear();
                     break;
                 // atribuicao de valores
                 case 103:
-                    tipo = (string) PilhaTipos.Pop();
+                    tipo = (string)PilhaTipos.Pop();
                     if (tipo == "int64")
                     {
                         AppendToCode("conv.i8");
                     }
 
-                    foreach (string _ in ListaIdentificadores)
+                    for (int i = 0; i < ListaIdentificadores.Count - 1; i++)
                     {
                         AppendToCode("dup");
                     }
@@ -257,7 +260,7 @@ namespace SemanticAnalyzer
                     {
                         if (!TabelaSimbolos.ContainsKey(id))
                         {
-                            throw new SemanticError("a", 1);
+                            throw new SemanticError($"{id} não declarado", token.GetPosition());
                         }
 
                         AppendToCode($"stloc {id}");
@@ -269,7 +272,7 @@ namespace SemanticAnalyzer
                 // escreve constante string do comando de entrada
                 case 106:
                     AppendToCode(
-                        $"ldstr \"{token.GetLexeme()}\"",
+                        $"ldstr {token.GetLexeme()}",
                         "call void [mscorlib]System.Console::Write(string)"
                     );
                     break;
@@ -278,7 +281,7 @@ namespace SemanticAnalyzer
                     identificador = token.GetLexeme();
                     if (!TabelaSimbolos.ContainsKey(identificador))
                     {
-                        throw new SemanticError("a", 1);
+                        throw new SemanticError($"{identificador} não declarado", token.GetPosition());
                     }
 
                     AppendToCode("call string [mscorlib]System.Console::ReadLine()");
@@ -346,7 +349,7 @@ namespace SemanticAnalyzer
         }
 
         //Gera um rótulo novo único
-        public string GenerateLabel() 
+        public string GenerateLabel()
         {
             return $"Label{contadorRotulos++}";
         }
@@ -368,24 +371,28 @@ namespace SemanticAnalyzer
                 if (type2 == "int64")
                 {
                     PilhaTipos.Push("int64");
-                } else if (type2 == "float64")
+                }
+                else if (type2 == "float64")
                 {
                     PilhaTipos.Push("float64");
-                } else
-                {
-                    throw new SemanticError("a", 1);
                 }
-            } else if (type1 == "float64")
+                else
+                {
+                    throw new SemanticError($"Tipo {type2} não compatível com {type1}", 1);
+                }
+            }
+            else if (type1 == "float64")
             {
                 if (type2 != "int64" || type2 != "float64")
                 {
-                    throw new SemanticError("a", 1);
+                    throw new SemanticError($"Tipo {type1} não compatível com {type2}", 1);
                 }
 
                 PilhaTipos.Push("float64");
-            } else
+            }
+            else
             {
-                throw new SemanticError("a", 1);
+                throw new SemanticError($"Tipo {type1} incompatível", 1);
             }
         }
 
@@ -403,7 +410,7 @@ namespace SemanticAnalyzer
                 case "b":
                     return "bool";
                 default:
-                    throw new SemanticError("a", 1);
+                    throw new SemanticError($"Tipo {prefix} inválido", 1);
             }
         }
     }

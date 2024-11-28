@@ -169,6 +169,12 @@ namespace CompiladorApp
                 int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(errorSyntatic.GetPosition()));
                 messagesTextBox.Rtf = string.Format(@"{{\rtf1\ansi Erro na linha \b {0}\b0  - encontrado {1} {2} }}", lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1, errorSyntatic.GetFound(), errorSyntatic.Message);
             }
+            catch (SemanticError errorSemantic)
+            {
+                error = true;
+                int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(errorSemantic.GetPosition()));
+                messagesTextBox.Rtf = string.Format(@"{{\rtf1\ansi Erro na linha \b {0}\b0  - {1} }}", lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1, errorSemantic.Message);
+            }
 
             if (!error)
             {
