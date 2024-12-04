@@ -1,4 +1,4 @@
-using LexicalAnalyzer;
+﻿using LexicalAnalyzer;
 using SyntaticAnalyzer;
 using SemanticAnalyzer;
 using AnalyzerUtils;
@@ -137,6 +137,13 @@ namespace CompiladorApp
 
         private void compileButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(_filePath))
+            {
+                messagesTextBox.Clear();
+                messagesTextBox.AppendText("Arquivo não salvo, não é possível compilar o código.");
+                return;
+            }
+
             string sourceCode = lineNumberRtb.richTextBox.Text;
             Lexico scanner = new();
             Sintatico sintatico = new();
@@ -169,6 +176,12 @@ namespace CompiladorApp
                 int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(errorSyntatic.GetPosition()));
                 messagesTextBox.Rtf = string.Format(@"{{\rtf1\ansi Erro na linha \b {0}\b0  - encontrado {1} {2} }}", lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1, errorSyntatic.GetFound(), errorSyntatic.Message);
             }
+            catch (SemanticError errorSemantic)
+            {
+                error = true;
+                int index = lineNumberRtb.richTextBox.GetCharIndexFromPosition(lineNumberRtb.richTextBox.GetPositionFromCharIndex(errorSemantic.GetPosition()));
+                messagesTextBox.Rtf = string.Format(@"{{\rtf1\ansi Erro na linha \b {0}\b0  - {1} }}", lineNumberRtb.richTextBox.GetLineFromCharIndex(index) + 1, errorSemantic.Message);
+            }
 
             if (!error)
             {
@@ -176,13 +189,16 @@ namespace CompiladorApp
                 if (tokenList.Any())
                     messagesTextBox.Text = string.Join(Environment.NewLine, tokenList);
 
+                
+                FileGenerator.Generate(_filePath, semantico.GetCodigo());
+
                 messagesTextBox.AppendText("Programa compilado com sucesso.");
             }
         }
 
         private void teamButton_Click(object sender, EventArgs e)
         {
-            messagesTextBox.Text = "Cristian Monster\r\nLucas de Farias Teixeira\r\nVin�cius Gabriel de Souza";
+            messagesTextBox.Text = "Cristian Monster\r\nLucas de Farias Teixeira\r\nVinícius Gabriel de Souza";
         }
 
         private void Compilador_KeyDown(object sender, KeyEventArgs e)
@@ -207,7 +223,7 @@ namespace CompiladorApp
             {
                 teamButton_Click(sender, e);
             }
-            // os itens abaixo j� funcionam de maneira nativa, validar se futuramente ser� preciso corrigir
+            // os itens abaixo já funcionam de maneira nativa, validar se futuramente será preciso corrigir
             //else if (e.Control && e.KeyCode == Keys.C)
             //{
             //    copyButton_Click(sender, e);
@@ -225,7 +241,7 @@ namespace CompiladorApp
         private string GetTokenClassName(int tokenId)
         {
             if (tokenId >= 2 && tokenId <= 17)
-                return "s�mbolo especial";
+                return "símbolo especial";
             else if (tokenId >= 19 && tokenId <= 31)
                 return "palavra reservada";
             else
@@ -240,7 +256,7 @@ namespace CompiladorApp
                     case 35:
                         return "constante_string";
                     default:
-                        return "classe n�o esperada";
+                        return "classe não esperada";
                 }
         }
     }
